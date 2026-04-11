@@ -27,25 +27,25 @@ grid_settings:
 
 # Tag colors — change here to update borders, badges, and filter buttons everywhere
 tag_colors:
-  personal: "#DAC7FF"
-  class: "#2A0E24"
-  EMB: "#FA5A5A"
-  DSP: "#2A34D5"
-  PCBD: "#5AB518"
-  WOOD: "#E3BB7F"
-  3D-CAD: "#BBF7EF"
-  CS: "#F08EA0"
+  personal: "oklch(89% 0.057 293.283)"
+  class: "oklch(21.8% 0.058 336.281)"
+  EMB: "oklch(68.1% 0.196 23.899)"
+  DSP: "oklch(44.8% 0.238 269.460)"
+  PCBD: "oklch(69.0% 0.199 136.352)"
+  WOOD: "oklch(81.4% 0.090 77.094)"
+  3D-CAD: "oklch(93.3% 0.061 186.119)"
+  CS: "oklch(75.4% 0.120 8.490)"
 
 # Active-text colors for filter buttons (text color when button is active/filled)
 tag_active_text:
-  personal: "#2d2046"
-  class: "#fff"
-  EMB: "#000"
-  DSP: "#fff"
-  PCBD: "#fff"
-  WOOD: "#fff"
-  3D-CAD: "#000"
-  CS: "#fff"
+  personal: "oklch(28.0% 0.069 297.543)"
+  class: "oklch(100% 0 0)"
+  EMB: "oklch(0% 0 0)"
+  DSP: "oklch(100% 0 0)"
+  PCBD: "oklch(100% 0 0)"
+  WOOD: "oklch(100% 0 0)"
+  3D-CAD: "oklch(0% 0 0)"
+  CS: "oklch(100% 0 0)"
 
 # Full display names for tags
 tag_labels:
@@ -99,26 +99,21 @@ my_social_settings:
   email: mailto:halfsohappy@gmail.com
 
 color_settings:
-  pretty_pink: '#DAC7FF'
-  pink_white: '#faf9f9'
+  pretty_pink: 'oklch(89% 0.057 293.283)'
+  pink_white: 'oklch(98.3% 0.001 12.858)'
 
 
-  background_color: '#ffffff'
-  background_alt_color: '#f4f5f6'
-  text_dark_color: '#2A2F36'
-  text_medium_color: '#6C7A89'
-  text_light_color: '#ABB7B7'
-  #accent_color: '#4ecdc4'
-  #accent_color: '#935793'
-  accent_color: '#90849c'
-  border_color: '#dddddd'
-  #overlay_background_color: '#935793'
-  overlay_background_color: '#90849c'
-  #overlay_background_color: '#4ecdc4'
-  overlay_text_color: '#ffffff'
-  #overlay_accent_color: '#2A2F36'
-  overlay_accent_color: '#936793'
-  error_color: '#D64541'
+  background_color: 'oklch(100% 0 0)'
+  background_alt_color: 'oklch(97.0% 0.002 248.558)'
+  text_dark_color: 'oklch(30.3% 0.015 256.801)'
+  text_medium_color: 'oklch(57.3% 0.029 250.172)'
+  text_light_color: 'oklch(77.0% 0.013 197.144)'
+  accent_color: 'oklch(63.2% 0.038 307.740)'
+  border_color: 'oklch(89.8% 0 0)'
+  overlay_background_color: 'oklch(63.2% 0.038 307.740)'
+  overlay_text_color: 'oklch(100% 0 0)'
+  overlay_accent_color: 'oklch(57.5% 0.084 326.571)'
+  error_color: 'oklch(59.6% 0.182 25.922)'
 
 font_settings:
   #font_embed: '<link href="https://fonts.googleapis.com/css?family=Poppins:300,500" rel="stylesheet">'

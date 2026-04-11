@@ -134,7 +134,7 @@
 	display: flex;
 	padding: 10px 12px;
 	overflow: hidden;
-	background: rgba($overlay-background-color, 0.6);
+	background: oklch(63.2% 0.038 307.740 / 0.6);
 
 	opacity: 0;
 	visibility: hidden;
@@ -200,7 +200,7 @@
 
 .listing-item__subtitle {
 	margin-top: 5px;
-	color: rgba($overlay-text-color, 0.7);
+	color: oklch(100% 0 0 / 0.7);
 	font-weight: $grid-item-subtitle-weight;
 	letter-spacing: $grid-item-subtitle-spacing;
 	text-shadow: 0 1px 5px rgba(0,0,0,0.6), 0 0 2px rgba(0,0,0,0.4);
