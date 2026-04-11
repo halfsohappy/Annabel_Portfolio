@@ -105,16 +105,16 @@
 }
 
 ::-webkit-input-placeholder {
-	color: lighten($text-light-color,15%);
+	color: oklch(88.4% 0.007 197.655);
 }
 ::-moz-placeholder {
-	color: lighten($text-light-color,15%);
+	color: oklch(88.4% 0.007 197.655);
 }
 :-ms-input-placeholder {
-	color: lighten($text-light-color,15%);
+	color: oklch(88.4% 0.007 197.655);
 }
 :-moz-placeholder {
-	color: lighten($text-light-color,15%);
+	color: oklch(88.4% 0.007 197.655);
 }
 
 .contact-form__textarea {
