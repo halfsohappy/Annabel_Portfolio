@@ -12,6 +12,8 @@ menu_settings:
     #   url: '/'
     - title: 'List'
       url: '/list/'
+    - title: 'Resume'
+      url: '/resume-template/'
     - title: 'About'
       url: '/about/'
 

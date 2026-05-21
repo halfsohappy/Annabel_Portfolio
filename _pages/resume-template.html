@@ -1,0 +1,195 @@
+---
+layout: default
+title: ATS-Friendly Resume Template
+description: Simple single-column resume template with this site's aesthetic.
+permalink: /resume-template/
+---
+
+<style>
+  .resume-template {
+    max-width: 860px;
+    margin: 2rem auto 4rem;
+    padding: 2rem;
+    border: 1px solid {{ site.data.settings.color_settings.border_color }};
+    border-radius: 14px;
+    background: {{ site.data.settings.color_settings.background_color }};
+    color: {{ site.data.settings.color_settings.text_dark_color }};
+  }
+
+  .resume-template .resume-name {
+    margin: 0;
+    color: {{ site.data.settings.color_settings.text_dark_color }};
+  }
+
+  .resume-template .resume-contact {
+    margin-top: 0.35rem;
+    margin-bottom: 1.3rem;
+    color: {{ site.data.settings.color_settings.text_medium_color }};
+    font-size: 0.96rem;
+  }
+
+  .resume-template .resume-contact a {
+    color: inherit;
+    border-bottom: none;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+
+  .resume-template hr {
+    border: 0;
+    border-top: 2px solid {{ site.data.settings.color_settings.accent_color }};
+    margin: 1rem 0 1.1rem;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .resume-template .resume-section {
+    margin-top: 1.15rem;
+  }
+
+  .resume-template .resume-section h2 {
+    margin: 0 0 0.45rem;
+    font-size: 1.1rem;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    color: {{ site.data.settings.color_settings.accent_color }};
+  }
+
+  .resume-template p,
+  .resume-template ul {
+    margin: 0 0 0.55rem;
+    line-height: 1.5;
+    font-size: 0.96rem;
+  }
+
+  .resume-template ul {
+    padding-left: 1.15rem;
+  }
+
+  .resume-template .resume-item {
+    margin-bottom: 0.8rem;
+  }
+
+  .resume-template .resume-item-header {
+    margin: 0 0 0.15rem;
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: {{ site.data.settings.color_settings.text_dark_color }};
+  }
+
+  .resume-template .resume-item-meta {
+    margin: 0 0 0.3rem;
+    color: {{ site.data.settings.color_settings.text_medium_color }};
+    font-size: 0.88rem;
+  }
+
+  @media (max-width: 700px) {
+    .resume-template {
+      margin: 1.25rem auto 2.5rem;
+      padding: 1.2rem;
+      border-radius: 10px;
+    }
+  }
+
+  @media print {
+    .header,
+    .header__colorbar,
+    .footer,
+    .loader,
+    .page-loader {
+      display: none !important;
+    }
+
+    .resume-template {
+      border: none;
+      margin: 0;
+      padding: 0;
+      max-width: 100%;
+    }
+
+    .resume-template * {
+      color: #000 !important;
+    }
+
+    .resume-template a {
+      text-decoration: none;
+    }
+  }
+</style>
+
+<section class="resume-template" aria-label="ATS resume template">
+  <h1 class="resume-name">[Full Name]</h1>
+  <p class="resume-contact">
+    [City, State] · [Phone Number] · <a href="mailto:you@example.com">[Email]</a> ·
+    <a href="[LinkedIn URL]">[LinkedIn]</a> · <a href="[Portfolio URL]">[Portfolio]</a>
+  </p>
+
+  <hr>
+
+  <section class="resume-section" aria-label="Professional Summary">
+    <h2>Professional Summary</h2>
+    <p>
+      [2-4 sentences tailored to the job, including target role, years of experience, strongest
+      skills, and impact.]
+    </p>
+  </section>
+
+  <section class="resume-section" aria-label="Skills">
+    <h2>Skills</h2>
+    <p>
+      <strong>Technical:</strong> [Languages], [Frameworks], [Tools], [Platforms]<br>
+      <strong>Domain:</strong> [Embedded Systems], [PCB Design], [Signal Processing], [Prototyping]
+    </p>
+  </section>
+
+  <section class="resume-section" aria-label="Experience">
+    <h2>Experience</h2>
+
+    <article class="resume-item">
+      <h3 class="resume-item-header">[Job Title] — [Company]</h3>
+      <p class="resume-item-meta">[Location] | [Month Year] – [Month Year or Present]</p>
+      <ul>
+        <li>[Action verb] [what you built/did] resulting in [measurable outcome].</li>
+        <li>[Action verb] [technical contribution] improving [metric or process].</li>
+        <li>[Action verb] with [team/stakeholders] to [business or user impact].</li>
+      </ul>
+    </article>
+
+    <article class="resume-item">
+      <h3 class="resume-item-header">[Job Title] — [Company]</h3>
+      <p class="resume-item-meta">[Location] | [Month Year] – [Month Year]</p>
+      <ul>
+        <li>[Action verb] [responsibility/project] with [scope].</li>
+        <li>[Action verb] [tool/method] that [outcome].</li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="resume-section" aria-label="Projects">
+    <h2>Projects</h2>
+
+    <article class="resume-item">
+      <h3 class="resume-item-header">[Project Name]</h3>
+      <p class="resume-item-meta">[Technologies Used] | [Month Year]</p>
+      <ul>
+        <li>[Action verb] [project goal], delivering [result].</li>
+        <li>[Action verb] [technical implementation detail] to [impact].</li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="resume-section" aria-label="Education">
+    <h2>Education</h2>
+    <article class="resume-item">
+      <h3 class="resume-item-header">[Degree], [Major] — [School]</h3>
+      <p class="resume-item-meta">[City, State] | [Graduation Month Year]</p>
+      <p>[Optional: GPA, honors, relevant coursework, thesis, activities.]</p>
+    </article>
+  </section>
+
+  <section class="resume-section" aria-label="Additional Information">
+    <h2>Additional Information</h2>
+    <p>[Certifications, publications, leadership, volunteering, awards, languages.]</p>
+  </section>
+</section>
