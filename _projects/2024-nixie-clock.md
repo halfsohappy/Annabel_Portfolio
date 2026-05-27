@@ -1,5 +1,6 @@
 ---
 title: 'Portable Nixie Tube Pomodoro Timer'
+favorite: true
 subtitle: 'This one has it all: ICs from the 70s! 200 Volts! Extremely Competent Perfboard Circuits! And of course, USB-C.'
 date: 2024-9-1 00:00:00
 description: 

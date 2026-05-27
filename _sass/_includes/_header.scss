@@ -28,8 +28,8 @@
 
 .header__colorbar {
 	display: flex;
-	align-items: flex-start;
-	height: 42px;
+	align-items: stretch;
+	height: 6px;
 	overflow: visible;
 	background: #fff;
 	clear: both;
@@ -41,50 +41,23 @@
 		flex: 1;
 		height: 6px;
 		position: relative;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		overflow: hidden;
-		transition: height 0.3s ease;
+		transition: filter 0.25s ease, transform 0.25s ease;
+	}
 
-		&.active {
-			height: 34px;
-			border-bottom-left-radius: 3px;
-			border-bottom-right-radius: 3px;
-
-			.header__colorbar__label {
-				opacity: 1;
-			}
-		}
+	&.has-active > span.active {
+		transform: scaleY(2);
+		z-index: 1;
+		box-shadow: 0 2px 6px rgba(0,0,0,0.18);
 	}
 
 	&--bottom {
-		align-items: flex-end;
 		margin-bottom: 0;
 		margin-top: 10px;
-
-		> span {
-			align-items: center;
-
-			&.active {
-				border-bottom-left-radius: 0;
-				border-bottom-right-radius: 0;
-				border-top-left-radius: 3px;
-				border-top-right-radius: 3px;
-			}
-		}
 	}
 }
 
 .header__colorbar__label {
-	font-family: $title-font;
-	font-size: 0.95rem;
-	font-weight: 700;
-	letter-spacing: 0.04em;
-	white-space: nowrap;
-	opacity: 0;
-	transition: opacity 0.25s ease 0.05s;
-	pointer-events: none;
+	display: none;
 }
 
 .header__logo {

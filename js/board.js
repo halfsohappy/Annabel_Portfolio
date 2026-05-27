@@ -384,9 +384,50 @@
 				});
 			}
 
-			$('.listing-wrap').imagesLoaded(function() {
-				autoFillGrid();
+			// Tag metadata for chip injection
+			var TAG_META = {
+				personal:  { label: 'Personal',    bg: 'oklch(89% 0.057 293.283)',   fg: 'oklch(28.0% 0.069 297.543)' },
+				'class':   { label: 'Class',       bg: 'oklch(21.8% 0.058 336.281)', fg: '#fff' },
+				EMB:       { label: 'Embedded',    bg: 'oklch(68.1% 0.196 23.899)',  fg: '#1a0a0a' },
+				DSP:       { label: 'DSP',         bg: 'oklch(44.8% 0.238 269.460)', fg: '#fff' },
+				PCBD:      { label: 'PCB Design',  bg: 'oklch(69.0% 0.199 136.352)', fg: '#0e1f0a' },
+				WOOD:      { label: 'Woodworking', bg: 'oklch(81.4% 0.090 77.094)',  fg: '#2a1a06' },
+				'3D-CAD':  { label: '3D CAD',      bg: 'oklch(93.3% 0.061 186.119)', fg: '#0a1f1f' },
+				CS:        { label: 'CS',          bg: 'oklch(75.4% 0.120 8.490)',   fg: '#fff' }
+			};
+
+			function injectTagChips() {
+				document.querySelectorAll('.listing-item[data-tags]').forEach(function(item) {
+					var tags = (item.getAttribute('data-tags') || '').trim().split(/\s+/).filter(Boolean);
+					if (!tags.length) return;
+					var info = item.querySelector('.listing-item__info');
+					if (!info || info.querySelector('.listing-item__tags')) return;
+					var row = document.createElement('div');
+					row.className = 'listing-item__tags';
+					tags.forEach(function(t) {
+						var meta = TAG_META[t];
+						if (!meta) return;
+						var chip = document.createElement('span');
+						chip.className = 'listing-item__tag';
+						chip.textContent = meta.label;
+						chip.style.background = meta.bg;
+						chip.style.color = meta.fg;
+						row.appendChild(chip);
+					});
+					info.appendChild(row);
+				});
+			}
+
+			// Force eager loading so naturalWidth/naturalHeight are available for aspect-ratio layout
+			document.querySelectorAll('.listing-wrap img').forEach(function(img) {
+				try { img.loading = 'eager'; } catch(e) {}
+				if (!(img.complete && img.naturalWidth)) {
+					img.addEventListener('load', function() { autoFillGrid(); }, { once: true });
+					img.addEventListener('error', function() { autoFillGrid(); }, { once: true });
+				}
 			});
+			autoFillGrid(); // first pass with already-loaded images + numeric spans
+			injectTagChips();
 
 			// Re-run on resize to adapt to responsive column changes
 			var resizeTimer;
@@ -397,6 +438,7 @@
 
 			// Header colorbar hover effect — highlight matching tag sections
 			(function() {
+				var bars = document.querySelectorAll('.header__colorbar');
 				var barSpans = document.querySelectorAll('.header__colorbar span[data-tag]');
 				if (!barSpans.length) return;
 
@@ -409,6 +451,7 @@
 					barSpans.forEach(function(span) {
 						span.classList.toggle('active', tags.indexOf(span.getAttribute('data-tag')) !== -1);
 					});
+					bars.forEach(function(b) { b.classList.add('has-active'); });
 				}
 
 				function deactivateAll() {
@@ -416,6 +459,7 @@
 					barSpans.forEach(function(span) {
 						span.classList.remove('active');
 					});
+					bars.forEach(function(b) { b.classList.remove('has-active'); });
 				}
 
 				document.addEventListener('mouseover', function(e) {
@@ -427,6 +471,13 @@
 					}
 				});
 			})();
+
+			// Stop the attention shake on first hover
+			document.querySelectorAll('.shake-attention').forEach(function(el) {
+				el.addEventListener('mouseenter', function() {
+					el.classList.add('shaken');
+				}, { once: true });
+			});
 		});
 
 
