@@ -500,17 +500,36 @@
 					list.appendChild(li);
 				});
 
-				function place() {
-					// getBoundingClientRect().top + scrollY = document-relative top,
-					// stable regardless of scroll position at measurement time
-					var top = descBox.getBoundingClientRect().top + window.scrollY;
-					sidebar.style.top = top + 'px';
-					sidebar.style.display = 'block';
+				// Poll every frame until the bento top is stable for two consecutive
+				// measurements, then show the sidebar exactly once — no intermediate
+				// visible state, no pop from font-swap reflows.
+				var prevTop = 0;
+				var stableFrames = 0;
+				var maxFrames = 90; // ~1.5 s safety cap
+				function waitAndPlace() {
+					var top = Math.round(descBox.getBoundingClientRect().top + window.scrollY);
+					if (top === prevTop && top > 0) {
+						stableFrames++;
+					} else {
+						stableFrames = 0;
+					}
+					prevTop = top;
+					maxFrames--;
+					if (stableFrames >= 2 || maxFrames <= 0) {
+						sidebar.style.top = top + 'px';
+						sidebar.style.display = 'block';
+					} else {
+						requestAnimationFrame(waitAndPlace);
+					}
 				}
+				requestAnimationFrame(waitAndPlace);
 
-				var fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
-				fontsReady.then(function() { requestAnimationFrame(function() { requestAnimationFrame(place); }); });
-				window.addEventListener('resize', function() { requestAnimationFrame(place); });
+				// Re-place on window resize (viewport/column changes)
+				window.addEventListener('resize', function() {
+					sidebar.style.display = 'none';
+					prevTop = 0; stableFrames = 0; maxFrames = 60;
+					requestAnimationFrame(waitAndPlace);
+				});
 			})();
 		});
 
