@@ -158,6 +158,22 @@ permalink: /list/
   .project-list-tags .badge[data-filter]:hover {
     opacity: 0.8;
   }
+  .project-list-external-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #e8e0f5;
+    color: #7c5cbf;
+    font-size: 10px;
+    font-weight: 700;
+    vertical-align: middle;
+    margin-left: 5px;
+    position: relative;
+    top: -1px;
+  }
   @media (max-width: 600px) {
     .project-list-title { font-size: 0.97rem; }
     .project-list-body { padding: 10px 12px; }
@@ -218,10 +234,10 @@ permalink: /list/
     {% if thing.CS %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.CS | append: "," %}{% endif %}
     {% assign tag_colors = tag_colors | strip | remove_last: "," %}
 
-    <a class="project-list-item" href="{{thing.permalink}}" data-tags="{{tags | strip}}" data-year="{{thing.date | date: '%Y'}}" data-tag-colors="{{ tag_colors }}">
+    <a class="project-list-item{% if thing.layout == 'external' %} project-list-item--external{% endif %}" href="{% if thing.layout == 'external' %}{{thing.external_url}}{% else %}{{thing.permalink}}{% endif %}"{% if thing.layout == 'external' %} target="_blank" rel="noopener noreferrer"{% endif %} data-tags="{{tags | strip}}" data-year="{{thing.date | date: '%Y'}}" data-tag-colors="{{ tag_colors }}">
       <div class="project-list-accent"></div>
       <div class="project-list-body">
-        <div class="project-list-title">{{thing.title}}</div>
+        <div class="project-list-title">{{thing.title}}{% if thing.layout == 'external' %} <span class="project-list-external-icon" title="Opens external link">↗</span>{% endif %}</div>
         {% if thing.subtitle %}<div class="project-list-subtitle">{{thing.subtitle}}</div>{% endif %}
         <div class="project-list-tags">
           {% if thing.date %}<span class="badge" style="background:oklch(21.8% 0.058 336.281);color:oklch(100% 0 0)">{{thing.date | date: "%Y"}}</span>{% endif %}

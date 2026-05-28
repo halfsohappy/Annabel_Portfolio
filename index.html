@@ -58,9 +58,13 @@ featured_image: /images/profile-photo-annie.jpg
 		{% if project.CS %}{% assign tag_names = tag_names | append: "CS " %}{% endif %}
 		{% assign tag_names = tag_names | strip %}
 
-		<div class="listing-item {{ w_class }} {{ h_class }}{% if project.favorite %} shake-attention{% endif %}" data-grid-width="{{ gw }}" data-grid-height="{{ gh }}"{% if gar != "" %} data-grid-aspect-ratio="{{ gar }}"{% endif %} data-tag-colors="{{ tag_colors }}" data-tags="{{ tag_names }}">
+		<div class="listing-item {{ w_class }} {{ h_class }}{% if project.favorite %} shake-attention{% endif %}{% if project.layout == 'external' %} listing-item--external{% endif %}" data-grid-width="{{ gw }}" data-grid-height="{{ gh }}"{% if gar != "" %} data-grid-aspect-ratio="{{ gar }}"{% endif %} data-tag-colors="{{ tag_colors }}" data-tags="{{ tag_names }}">
 
+			{% if project.layout == 'external' %}
+			<a class="listing-item__link" href="{{ project.external_url }}" target="_blank" rel="noopener noreferrer">
+			{% else %}
 			<a class="listing-item__link" href="{{ project.url | relative_url }}">
+			{% endif %}
 
 				<div class="listing-item__image {{ crop_class }} {{ pos_class }}">
 					<img src="{{ project.featured_image | relative_url }}" alt="{{ project.title }}" loading="lazy">
