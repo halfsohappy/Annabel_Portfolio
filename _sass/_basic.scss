@@ -325,12 +325,6 @@ body.loading {
 		@include transition(all 0.4s ease-in-out);
 	}
 
-	#toc-sidebar {
-		opacity: 0;
-		visibility: hidden;
-		@include transition(all 0.4s ease-in-out);
-		@include translate(0, 20px);
-	}
 }
 
 .loader {

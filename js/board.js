@@ -23,6 +23,10 @@
 		// Loading state
 		$('body').addClass('loading');
 
+		// Fade out any ToC sidebar that was hoisted to <body>
+		var _tocOut = document.body.querySelector(':scope > #toc-sidebar');
+		if (_tocOut) { _tocOut.classList.remove('is-visible'); }
+
 		// Load the page
 		$('.page-loader').load( state.hash + ' .page__content', function() {
 
@@ -523,7 +527,11 @@
 					maxFrames--;
 					if (stableFrames >= 2 || maxFrames <= 0) {
 						sidebar.style.top = top + 'px';
-						sidebar.style.display = 'block';
+						// Fade in via CSS class — the base .toc-sidebar rule starts at
+						// opacity:0/visibility:hidden/translateY(20px) with a transition
+						// already defined, so adding .is-visible triggers a smooth fade
+						// without any rAF or offsetHeight tricks needed.
+						sidebar.classList.add('is-visible');
 					} else {
 						requestAnimationFrame(waitAndPlace);
 					}
@@ -532,7 +540,7 @@
 
 				// Re-place on window resize
 				window.addEventListener('resize', function() {
-					sidebar.style.display = 'none';
+					sidebar.classList.remove('is-visible');
 					prevTop = 0; stableFrames = 0; maxFrames = 60;
 					requestAnimationFrame(waitAndPlace);
 				});
