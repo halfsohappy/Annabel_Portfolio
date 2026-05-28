@@ -152,6 +152,23 @@ $grid-columns-mobile: {{ _mc }};
 
 
 
+// - - - - - - - - - - CSS custom properties (for use in inline styles / layouts)
+
+:root {
+  --background-color:     {{ site.data.settings.color_settings.background_color }};
+  --background-alt-color: {{ site.data.settings.color_settings.background_alt_color }};
+  --text-dark-color:      {{ site.data.settings.color_settings.text_dark_color }};
+  --text-medium-color:    {{ site.data.settings.color_settings.text_medium_color }};
+  --text-light-color:     {{ site.data.settings.color_settings.text_light_color }};
+  --accent-color:         {{ site.data.settings.color_settings.accent_color }};
+  --border-color:         {{ site.data.settings.color_settings.border_color }};
+  --pretty-pink:          {{ site.data.settings.color_settings.pretty_pink }};
+  --f-body:               #{$body-font};
+  --f-title:              #{$title-font};
+}
+
+
+
 // - - - - - - - - - - Global styles
 
 @import "_basic";

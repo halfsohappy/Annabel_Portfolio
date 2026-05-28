@@ -7,6 +7,191 @@ layout: default
     font-size: 0.95rem;
     padding: 6px 12px;
   }
+
+  .bento {
+    padding: 0 20px 15px;
+  }
+  .bento__inner {
+    max-width: 75%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 0.6fr;
+    grid-template-areas:
+      "desc list"
+      "meta list";
+    gap: 12px;
+  }
+  .bento__box {
+    background: transparent;
+    border: 4px solid var(--pretty-pink);
+    border-radius: 14px;
+    padding: 18px 22px;
+    min-height: 110px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    position: relative;
+    overflow: hidden;
+  }
+  .bento__box::before { display: none; }
+
+  /* Grid placement */
+  .bento__box--desc { grid-area: desc; }
+  .bento__box--list { grid-area: list; }
+  .bento__box--meta {
+    grid-area: meta;
+    min-height: 0;
+    padding: 12px 22px;
+    border-style: dashed;
+  }
+  .bento__box--list {
+    border-color: rgb(147, 103, 147);
+  }
+  .bento__box--tags {
+    grid-area: tags;
+    min-height: 0;
+    padding: 10px 18px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    background: none;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+  }
+  .bento__box--tags .badge {
+    font-size: 1.1rem;
+    padding: 6px 14px;
+  }
+  /* Horizontal layout for meta bar */
+  .bento__box--meta .bento__meta {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+  }
+  .bento__box--meta .bento__meta-row {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 5px;
+  }
+
+  @media (max-width: 767px) {
+    .bento__inner { grid-template-columns: 1fr; grid-template-areas: "desc" "list" "meta"; }
+  }
+
+  /* Center description box — no stripe, giant ghost quote instead */
+  .bento__box--desc::before { display: none; }
+  .bento__desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    position: relative;
+  }
+  .bento__desc::before { display: none; }
+  .bento__desc-text {
+    font-family: var(--f-title);
+    font-size: 1.4rem;
+    color: {{ site.data.settings.tag_colors.class }};
+    font-weight: 700;
+    line-height: 1.5;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Right image box — no padding, image fills entirely */
+  .bento__box--image { padding: 0; }
+  .bento__box--image::before { display: none; }
+  .bento__cover {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 14px;
+    display: block;
+  }
+
+  /* Generic box header + list */
+  .bento__box-title {
+    font-family: var(--f-title);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: rgb(147, 103, 147);
+    margin: 0 0 8px;
+  }
+  .bento__box-list {
+    margin: 0;
+    padding-left: 1.1em;
+    color: var(--text-medium-color);
+    font-family: var(--f-body);
+    font-size: 0.85rem;
+    line-height: 1.75;
+  }
+  .bento__box--list .bento__box-list {
+    padding-left: 0.9em;
+  }
+
+  /* Left meta box */
+  .bento__meta { display: flex; flex-direction: column; gap: 14px; }
+  .bento__meta-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .bento__meta-tags .badge { font-size: 0.8rem; padding: 4px 10px; }
+  .bento__meta-row { display: flex; flex-direction: column; gap: 3px; }
+  .bento__meta-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    font-family: var(--f-body);
+  }
+  .bento__meta-value {
+    font-size: 0.85rem;
+    color: var(--text-dark-color);
+    font-family: var(--f-body);
+  }
+
+  /* Sticky ToC sidebar */
+  .toc-sidebar {
+    position: fixed;
+    left: 10px;
+    width: 11%;
+    max-height: 70vh;
+    overflow-y: auto;
+    border: 4px solid var(--pretty-pink);
+    border-radius: 14px;
+    padding: 14px 12px;
+    background: transparent;
+    z-index: 50;
+    display: none;
+  }
+  @media (max-width: 1100px) { .toc-sidebar { display: none !important; } }
+  .toc-sidebar__title {
+    font-family: var(--f-body);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    margin: 0 0 8px;
+  }
+  .toc-sidebar__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .toc-sidebar__list li { padding: 2px 0; }
+  .toc-sidebar__list a {
+    color: var(--text-medium-color);
+    text-decoration: none;
+    font-family: var(--f-body);
+    font-size: 0.72rem;
+    line-height: 1.4;
+    display: block;
+  }
+  .toc-sidebar__list a:hover { color: var(--accent-color); }
+  .toc-sidebar__list .toc-h4 a { padding-left: 8px; font-size: 0.67rem; }
 </style>
 
 <section class="intro">
@@ -51,13 +236,122 @@ layout: default
 		<a class="badge" style="background:{{ site.data.settings.tag_colors.CS }};color:{{ site.data.settings.tag_active_text.CS }}" href="/list/?filter=CS">CS</a>
 		{% endif %}
   
-		<p>{{ page.subtitle }}</p>
 	</div>
 
 </section>
+
+<section class="bento">
+  {% assign stripe_colors = "" %}
+  {% if page.personal %}{% assign stripe_colors = stripe_colors | append: site.data.settings.tag_colors.personal | append: "," %}{% endif %}
+  {% if page.class %}{% assign stripe_colors = stripe_colors | append: site.data.settings.tag_colors.class | append: "," %}{% endif %}
+  {% if page.EMB %}{% assign stripe_colors = stripe_colors | append: site.data.settings.tag_colors.EMB | append: "," %}{% endif %}
+  {% if page.DSP %}{% assign stripe_colors = stripe_colors | append: site.data.settings.tag_colors.DSP | append: "," %}{% endif %}
+  {% if page.PCBD %}{% assign stripe_colors = stripe_colors | append: site.data.settings.tag_colors.PCBD | append: "," %}{% endif %}
+  {% if page.WOOD %}{% assign stripe_colors = stripe_colors | append: site.data.settings.tag_colors.WOOD | append: "," %}{% endif %}
+  {% if page['3D-CAD'] %}{% assign stripe_colors = stripe_colors | append: site.data.settings.tag_colors['3D-CAD'] | append: "," %}{% endif %}
+  {% if page.CS %}{% assign stripe_colors = stripe_colors | append: site.data.settings.tag_colors.CS | append: "," %}{% endif %}
+  {% assign stripe_arr = stripe_colors | split: "," %}
+  {% assign stripe_clean = "" %}
+  {% for c in stripe_arr %}{% if c != "" %}{% unless stripe_clean == "" %}{% assign stripe_clean = stripe_clean | append: "," %}{% endunless %}{% assign stripe_clean = stripe_clean | append: c %}{% endif %}{% endfor %}
+
+  <div class="bento__inner">
+
+    <div class="bento__box bento__box--meta">
+      <div class="bento__meta">
+
+        {% if page.date %}
+        <div class="bento__meta-row">
+          <span class="bento__meta-label">Date</span>
+          <span class="bento__meta-value">{{ page.date | date: "%B %Y" }}</span>
+        </div>
+        {% endif %}
+
+        {% if page.complexity %}
+        <div class="bento__meta-row">
+          <span class="bento__meta-label">Complexity</span>
+          <span class="bento__meta-value">{{ page.complexity }}</span>
+        </div>
+        {% endif %}
+
+        {% if page.created_for %}
+        <div class="bento__meta-row">
+          <span class="bento__meta-label">Created for</span>
+          <span class="bento__meta-value">{{ page.created_for }}</span>
+        </div>
+        {% endif %}
+
+        {% if page.status %}
+        <div class="bento__meta-row">
+          <span class="bento__meta-label">Status</span>
+          <span class="bento__meta-value">{{ page.status }}</span>
+        </div>
+        {% endif %}
+
+      </div>
+    </div>
+
+    {% if page.subtitle %}
+    <div class="bento__box bento__box--desc">
+      <div class="bento__desc">
+        <p class="bento__desc-text">{{ page.subtitle }}</p>
+      </div>
+    </div>
+    {% else %}
+    <div class="bento__box bento__box--desc"></div>
+    {% endif %}
+
+    {% if page.highlights %}
+    <div class="bento__box bento__box--list">
+      <h4 class="bento__box-title">This one has it all!</h4>
+      <ul class="bento__box-list">
+        {% for item in page.highlights %}<li>{{ item }}</li>{% endfor %}
+      </ul>
+    </div>
+    {% else %}
+    <div class="bento__box bento__box--list"></div>
+    {% endif %}
+
+  </div>
+</section>
+
+<nav class="toc-sidebar" id="toc-sidebar">
+  <p class="toc-sidebar__title">Contents</p>
+  <ul class="toc-sidebar__list" id="toc-list"></ul>
+</nav>
 
 <section class="singles">
 
 	{{ page.content }}
 
 </section>
+
+<script>
+window.addEventListener('load', function() {
+  var sidebar = document.getElementById('toc-sidebar');
+  var list    = document.getElementById('toc-list');
+  var descBox = document.querySelector('.bento__box--desc');
+  if (!sidebar || !descBox) return;
+
+  // Double rAF ensures fonts + layout are fully painted before measuring
+  requestAnimationFrame(function() {
+    requestAnimationFrame(function() {
+      sidebar.style.top = descBox.getBoundingClientRect().top + 'px';
+      sidebar.style.display = 'block';
+    });
+  });
+
+  // Build ToC from page headings — hide sidebar if none found
+  var headings = document.querySelectorAll('.singles h2, .singles h3, .singles h4');
+  if (!headings.length) { sidebar.style.display = 'none'; return; }
+  headings.forEach(function(h, i) {
+    if (!h.id) h.id = 'toc-' + i;
+    var li = document.createElement('li');
+    if (h.tagName === 'H4') li.className = 'toc-h4';
+    var a = document.createElement('a');
+    a.href = '#' + h.id;
+    a.textContent = h.textContent.trim();
+    li.appendChild(a);
+    list.appendChild(li);
+  });
+});
+</script>
