@@ -16,9 +16,9 @@ grid_height: auto-medium
 grid_crop: cover
 grid_crop_position: center
 
-created_for: A secret santa gift
-status: functional hardware, preliminary software
-complexity: Medium-Well
+created_for: 'A secret santa gift'
+status: "Functional hardware, preliminary software"
+complexity: "Medium-Well"
 
 personal: true
 THE:

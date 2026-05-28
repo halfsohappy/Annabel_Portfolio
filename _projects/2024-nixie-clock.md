@@ -1,7 +1,7 @@
 ---
 title: 'Portable Nixie Tube Pomodoro Timer'
 favorite: true
-subtitle:
+subtitle: 'A mini project using only vintage digital logic ICs.'
 highlights:
   - "ICs from the 70s!"
   - "200 Volts!"
@@ -17,9 +17,9 @@ grid_height: auto-small
 grid_crop: cover
 grid_crop_position: center
 
-created_for: a mini project for ECE 495.
-status: Functional (but only just)
-complexity: High
+created_for: 'a mini project for ECE 495.'
+status: "Functional (but only just)"
+complexity: "High"
 
 personal:
 THE:

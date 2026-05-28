@@ -1,6 +1,6 @@
 ---
 title: 48 Hour Wedding Arch
-subtitle: A sweetheart table arch for my sister's wedding under a time crunch.
+subtitle: "A sweetheart table arch for my sister's wedding under a time crunch."
 date: 2023-12-31 00:00:00
 featured_image: '/images/thumbs/arch.webp'
 layout: wider
@@ -10,7 +10,7 @@ grid_height: auto-small
 grid_crop: cover
 grid_crop_position: center
 
-created_for: my sister
+created_for: 'my sister'
 status: Immortalized in photos
 complexity: Low
 

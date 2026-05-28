@@ -332,36 +332,3 @@ layout: default
 
 </section>
 
-<script>
-(function() {
-  var sidebar = document.getElementById('toc-sidebar');
-  var list    = document.getElementById('toc-list');
-  var descBox = document.querySelector('.bento__box--desc');
-  if (!sidebar || !descBox) return;
-
-  // Build ToC from page headings — bail entirely if none found
-  var headings = document.querySelectorAll('.singles h2, .singles h3, .singles h4');
-  if (!headings.length) return;
-  headings.forEach(function(h, i) {
-    if (!h.id) h.id = 'toc-' + i;
-    var li = document.createElement('li');
-    if (h.tagName === 'H4') li.className = 'toc-h4';
-    var a = document.createElement('a');
-    a.href = '#' + h.id;
-    a.textContent = h.textContent.trim();
-    li.appendChild(a);
-    list.appendChild(li);
-  });
-
-  // Position sidebar after fonts have loaded and reflowed layout
-  function place() {
-    sidebar.style.top = descBox.getBoundingClientRect().top + 'px';
-    sidebar.style.display = 'block';
-  }
-  var fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
-  fontsReady.then(function() { requestAnimationFrame(place); });
-
-  // Re-place on resize in case layout shifts
-  window.addEventListener('resize', function() { requestAnimationFrame(place); });
-})();
-</script>

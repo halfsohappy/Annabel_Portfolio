@@ -16,9 +16,9 @@ grid_height: auto-small
 grid_crop: cover
 grid_crop_position: center
 
-created_for: fast, easy accessory building with LED strip
-status: Fully Operational!
-complexity: Medium
+created_for: 'fast, easy accessory building with LED strip'
+status: "Fully Operational!"
+complexity: "Medium"
 
 personal: true
 THE:

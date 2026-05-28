@@ -477,6 +477,41 @@
 					el.classList.add('shaken');
 				}, { once: true });
 			});
+
+			// ToC sidebar — only present on wider-layout project pages
+			(function() {
+				var sidebar = document.getElementById('toc-sidebar');
+				var list    = document.getElementById('toc-list');
+				var descBox = document.querySelector('.bento__box--desc');
+				if (!sidebar || !list || !descBox) return;
+
+				// Build ToC from page headings — bail if none
+				var headings = document.querySelectorAll('.singles h2, .singles h3, .singles h4');
+				if (!headings.length) return;
+				list.innerHTML = ''; // clear stale items from a prior AJAX load
+				headings.forEach(function(h, i) {
+					if (!h.id) h.id = 'toc-' + i;
+					var li = document.createElement('li');
+					if (h.tagName === 'H4') li.className = 'toc-h4';
+					var a = document.createElement('a');
+					a.href = '#' + h.id;
+					a.textContent = h.textContent.trim();
+					li.appendChild(a);
+					list.appendChild(li);
+				});
+
+				function place() {
+					// getBoundingClientRect().top + scrollY = document-relative top,
+					// stable regardless of scroll position at measurement time
+					var top = descBox.getBoundingClientRect().top + window.scrollY;
+					sidebar.style.top = top + 'px';
+					sidebar.style.display = 'block';
+				}
+
+				var fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+				fontsReady.then(function() { requestAnimationFrame(function() { requestAnimationFrame(place); }); });
+				window.addEventListener('resize', function() { requestAnimationFrame(place); });
+			})();
 		});
 
 

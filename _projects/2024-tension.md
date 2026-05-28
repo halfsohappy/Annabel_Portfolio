@@ -12,14 +12,14 @@ grid_crop: cover
 grid_crop_position: left
 
 created_for: 'ECE 495: Product Design'
-status: Earned an A+
-complexity: High
+status: "Earned an A+"
+complexity: "High"
 highlights:
-  - twelve custom, fully wireless lighted accessories!
+  - a fully functional digital tensiometer for rigging sailboats!
   - a team of three Mech Es and one EE!
   - an OLED *and* an E-paper display!
   - a testing rig we eventually recycled into a bookshelf!
-  - Charging over a barrel jack (I'm sorry)
+  - Charging over a barrel jack (I'm sorry).
 
 personal:
 THE:

@@ -18,8 +18,8 @@ grid_crop_position: center
 
 
 created_for: 'final for ECE 350: Hardware Design'
-status: Earned an A+!
-complexity: High
+status: "Earned an A+!"
+complexity: "High"
 
 
 personal: true
