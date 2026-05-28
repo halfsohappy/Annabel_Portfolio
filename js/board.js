@@ -480,6 +480,11 @@
 
 			// ToC sidebar — only present on wider-layout project pages
 			(function() {
+				// Remove any stale sidebar left in <body> from a previous project page
+				// (we hoist it there to escape .page's CSS transform; see below)
+				var stale = document.body.querySelector(':scope > #toc-sidebar');
+				if (stale) stale.remove();
+
 				var sidebar = document.getElementById('toc-sidebar');
 				var list    = document.getElementById('toc-list');
 				var descBox = document.querySelector('.bento__box--desc');
@@ -500,19 +505,20 @@
 					list.appendChild(li);
 				});
 
-				// Poll every frame until the bento top is stable for two consecutive
-				// measurements, then show the sidebar exactly once — no intermediate
-				// visible state, no pop from font-swap reflows.
+				// Hoist sidebar to <body> so it is never inside .page when AJAX
+				// navigation applies `transform: translate(0,20px)` to .page.
+				// A CSS transform on any ancestor breaks position:fixed containment,
+				// which is what caused the sidebar to slide down on navigate-away.
+				document.body.appendChild(sidebar);
+
+				// Poll every frame until the bento top is stable, then show once
 				var prevTop = 0;
 				var stableFrames = 0;
-				var maxFrames = 90; // ~1.5 s safety cap
+				var maxFrames = 90;
 				function waitAndPlace() {
 					var top = Math.round(descBox.getBoundingClientRect().top + window.scrollY);
-					if (top === prevTop && top > 0) {
-						stableFrames++;
-					} else {
-						stableFrames = 0;
-					}
+					if (top === prevTop && top > 0) { stableFrames++; }
+					else { stableFrames = 0; }
 					prevTop = top;
 					maxFrames--;
 					if (stableFrames >= 2 || maxFrames <= 0) {
@@ -524,7 +530,7 @@
 				}
 				requestAnimationFrame(waitAndPlace);
 
-				// Re-place on window resize (viewport/column changes)
+				// Re-place on window resize
 				window.addEventListener('resize', function() {
 					sidebar.style.display = 'none';
 					prevTop = 0; stableFrames = 0; maxFrames = 60;
