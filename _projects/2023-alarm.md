@@ -13,8 +13,8 @@ description:
 featured_image: '/images/thumbs/alarm.webp'
 permalink: /alarm/
 layout: wider
-grid_width: 3
-grid_height: 2
+grid_width: auto-medium
+grid_height: auto-small
 grid_crop: cover
 grid_crop_position: top
 

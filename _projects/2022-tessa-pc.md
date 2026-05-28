@@ -13,7 +13,7 @@ featured_image: '/images/thumbs/tessa_pc.webp'
 permalink: /tessa-pc/
 layout: wider
 grid_width: auto-medium
-grid_height: auto
+grid_height: auto-medium
 grid_crop: cover
 grid_crop_position: center
 
