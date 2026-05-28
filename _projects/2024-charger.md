@@ -1,6 +1,6 @@
 ---
 title: 'Dream Li-Po charger with Power Path'
-subtitle: 'I was tired of cheap Li-po chargers that never had all of the features I actually needed, so I designed this one to have it all.
+subtitle: 'I was tired of cheap Li-Po chargers that never had all of the features I actually needed, so I designed this one to have it all.'
 date: 2024-7-1 00:00:00
 description: 
 layout: wider

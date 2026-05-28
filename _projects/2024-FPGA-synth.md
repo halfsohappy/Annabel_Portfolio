@@ -17,7 +17,7 @@ grid_crop: cover
 grid_crop_position: center
 
 
-created_for: final for ECE 350: Hardware Design
+created_for: 'final for ECE 350: Hardware Design'
 status: Earned an A+!
 complexity: High
 
