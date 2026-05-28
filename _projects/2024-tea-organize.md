@@ -1,6 +1,10 @@
 ---
 title: 'Bespoke "Floating" Tea Organizer'
-subtitle: 'This one has it all: Magnets! CAD! Dovetail Joints!'
+subtitle: 'A stylish hardwood organizer designed to sort inventory at my job.'
+highlights:
+  - "Magnets!"
+  - "CAD!"
+  - "Dovetail Joints!"
 date: 2024-8-1 00:00:00
 layout: wider
 grid_width: 2
@@ -12,12 +16,11 @@ permalink: '/tea/'
 
 
 personal: true
-class:
+THE:
 EMB: 
 DSP: 
 PCBD: 
-WOOD: true
-3D-CAD: true
+FAB: true
 CS:
 ---
 

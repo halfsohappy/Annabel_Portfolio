@@ -1,6 +1,11 @@
 ---
 title: 'Leather LED Suspenders & Remote'
-subtitle: 'A spiritual successor to my synchronous LED bands. This one has it all: Gradient Math! iPod Aesthetics! Authentic Dead Cow! And of course, USB-C.'
+subtitle: 'A spiritual successor to my synchronous LED bands.'
+highlights:
+  - "Gradient Math!"
+  - "iPod Aesthetics!"
+  - "Authentic Dead Cow!"
+  - "And of course, USB-C."
 date: 2024-2-1 00:00:00
 description:
 featured_image: '/images/thumbs/suspend.webp'
@@ -12,14 +17,16 @@ grid_height: 3
 grid_crop: cover
 grid_crop_position: left
 
+created_for: complimenting my own LED wearables
+status: Fully functional but limited integration with other wearables
+complexity: Medium
 
 personal: true
-class:
+THE: true
 EMB: true
 DSP: 
 PCBD:
-WOOD:
-3D-CAD: true
+FAB: true
 CS: true
 ---
 

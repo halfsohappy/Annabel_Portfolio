@@ -144,8 +144,8 @@ permalink: /list/
     font-weight: 500;
     padding: 3px 9px;
   }
-  .badge-woodworking {
-    background: {{ site.data.settings.tag_colors.WOOD }};
+  .badge-fabrication {
+    background: {{ site.data.settings.tag_colors.FAB }};
     color: #fff;
   }
   .badge-cs {
@@ -170,12 +170,11 @@ permalink: /list/
     <div class="filter-row">
       <button class="filter-btn active" data-filter="all">All</button>
       <button class="filter-btn" data-filter="personal">Personal Project</button>
-      <button class="filter-btn" data-filter="class">Class Project</button>
+      <button class="filter-btn" data-filter="THE">Theater</button>
       <button class="filter-btn" data-filter="EMB">Embedded</button>
       <button class="filter-btn" data-filter="DSP">DSP</button>
       <button class="filter-btn" data-filter="PCBD">PCB Design</button>
-      <button class="filter-btn" data-filter="WOOD">Woodworking</button>
-      <button class="filter-btn" data-filter="3D-CAD">3D CAD</button>
+      <button class="filter-btn" data-filter="FAB">Fabrication</button>
       <button class="filter-btn" data-filter="CS">CS</button>
     </div>
     <div class="filter-row">
@@ -202,23 +201,20 @@ permalink: /list/
   {% for thing in site.projects reversed %}
     {% assign tags = "" %}
     {% if thing.personal %}{% assign tags = tags | append: " personal" %}{% endif %}
-    {% if thing.class %}{% assign tags = tags | append: " class" %}{% endif %}
+    {% if thing.THE %}{% assign tags = tags | append: " THE" %}{% endif %}
     {% if thing.EMB %}{% assign tags = tags | append: " EMB" %}{% endif %}
     {% if thing.DSP %}{% assign tags = tags | append: " DSP" %}{% endif %}
     {% if thing.PCBD %}{% assign tags = tags | append: " PCBD" %}{% endif %}
-    {% if thing.WOOD %}{% assign tags = tags | append: " WOOD" %}{% endif %}
-    {% assign cad = thing['3D-CAD'] %}
-    {% if cad %}{% assign tags = tags | append: " 3D-CAD" %}{% endif %}
+    {% if thing.FAB %}{% assign tags = tags | append: " FAB" %}{% endif %}
     {% if thing.CS %}{% assign tags = tags | append: " CS" %}{% endif %}
 
     {% assign tag_colors = "" %}
     {% if thing.personal %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.personal | append: "," %}{% endif %}
-    {% if thing.class %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.class | append: "," %}{% endif %}
+    {% if thing.THE %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.THE | append: "," %}{% endif %}
     {% if thing.EMB %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.EMB | append: "," %}{% endif %}
     {% if thing.DSP %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.DSP | append: "," %}{% endif %}
     {% if thing.PCBD %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.PCBD | append: "," %}{% endif %}
-    {% if thing.WOOD %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.WOOD | append: "," %}{% endif %}
-    {% if cad %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors['3D-CAD'] | append: "," %}{% endif %}
+    {% if thing.FAB %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.FAB | append: "," %}{% endif %}
     {% if thing.CS %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.CS | append: "," %}{% endif %}
     {% assign tag_colors = tag_colors | strip | remove_last: "," %}
 
@@ -228,14 +224,13 @@ permalink: /list/
         <div class="project-list-title">{{thing.title}}</div>
         {% if thing.subtitle %}<div class="project-list-subtitle">{{thing.subtitle}}</div>{% endif %}
         <div class="project-list-tags">
-          {% if thing.date %}<span class="badge text-bg-info">{{thing.date | date: "%Y"}}</span>{% endif %}
+          {% if thing.date %}<span class="badge" style="background:oklch(21.8% 0.058 336.281);color:oklch(100% 0 0)">{{thing.date | date: "%Y"}}</span>{% endif %}
           {% if thing.personal %}<span class="badge" style="background:{{ site.data.settings.tag_colors.personal }};color:{{ site.data.settings.tag_active_text.personal }}" data-filter="personal">Personal Project</span>{% endif %}
-          {% if thing.class %}<span class="badge" style="background:{{ site.data.settings.tag_colors.class }};color:{{ site.data.settings.tag_active_text.class }}" data-filter="class">Class Project</span>{% endif %}
+          {% if thing.THE %}<span class="badge" style="background:{{ site.data.settings.tag_colors.THE }};color:{{ site.data.settings.tag_active_text.THE }}" data-filter="THE">Theater</span>{% endif %}
           {% if thing.EMB %}<span class="badge" style="background:{{ site.data.settings.tag_colors.EMB }};color:{{ site.data.settings.tag_active_text.EMB }}" data-filter="EMB">Embedded</span>{% endif %}
           {% if thing.DSP %}<span class="badge" style="background:{{ site.data.settings.tag_colors.DSP }};color:{{ site.data.settings.tag_active_text.DSP }}" data-filter="DSP">DSP</span>{% endif %}
           {% if thing.PCBD %}<span class="badge" style="background:{{ site.data.settings.tag_colors.PCBD }};color:{{ site.data.settings.tag_active_text.PCBD }}" data-filter="PCBD">PCB Design</span>{% endif %}
-          {% if thing.WOOD %}<span class="badge" style="background:{{ site.data.settings.tag_colors.WOOD }};color:{{ site.data.settings.tag_active_text.WOOD }}" data-filter="WOOD">Woodworking</span>{% endif %}
-          {% if cad %}<span class="badge" style="background:{{ site.data.settings.tag_colors['3D-CAD'] }};color:{{ site.data.settings.tag_active_text['3D-CAD'] }}" data-filter="3D-CAD">3D CAD</span>{% endif %}
+          {% if thing.FAB %}<span class="badge" style="background:{{ site.data.settings.tag_colors.FAB }};color:{{ site.data.settings.tag_active_text.FAB }}" data-filter="FAB">Fabrication</span>{% endif %}
           {% if thing.CS %}<span class="badge" style="background:{{ site.data.settings.tag_colors.CS }};color:{{ site.data.settings.tag_active_text.CS }}" data-filter="CS">CS</span>{% endif %}
         </div>
       </div>

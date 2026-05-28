@@ -40,24 +40,21 @@ featured_image: /images/profile-photo-annie.jpg
 
 		{% assign tag_colors = "" %}
 		{% if project.personal %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.personal | append: "," %}{% endif %}
-		{% if project.class %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.class | append: "," %}{% endif %}
+		{% if project.THE %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.THE | append: "," %}{% endif %}
 		{% if project.EMB %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.EMB | append: "," %}{% endif %}
 		{% if project.DSP %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.DSP | append: "," %}{% endif %}
 		{% if project.PCBD %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.PCBD | append: "," %}{% endif %}
-		{% if project.WOOD %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.WOOD | append: "," %}{% endif %}
-		{% assign cad = project['3D-CAD'] %}
-		{% if cad %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors['3D-CAD'] | append: "," %}{% endif %}
+		{% if project.FAB %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.FAB | append: "," %}{% endif %}
 		{% if project.CS %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.CS | append: "," %}{% endif %}
 		{% assign tag_colors = tag_colors | strip | remove_last: "," %}
 
 		{% assign tag_names = "" %}
 		{% if project.personal %}{% assign tag_names = tag_names | append: "personal " %}{% endif %}
-		{% if project.class %}{% assign tag_names = tag_names | append: "class " %}{% endif %}
+		{% if project.THE %}{% assign tag_names = tag_names | append: "THE " %}{% endif %}
 		{% if project.EMB %}{% assign tag_names = tag_names | append: "EMB " %}{% endif %}
 		{% if project.DSP %}{% assign tag_names = tag_names | append: "DSP " %}{% endif %}
 		{% if project.PCBD %}{% assign tag_names = tag_names | append: "PCBD " %}{% endif %}
-		{% if project.WOOD %}{% assign tag_names = tag_names | append: "WOOD " %}{% endif %}
-		{% if cad %}{% assign tag_names = tag_names | append: "3D-CAD " %}{% endif %}
+		{% if project.FAB %}{% assign tag_names = tag_names | append: "FAB " %}{% endif %}
 		{% if project.CS %}{% assign tag_names = tag_names | append: "CS " %}{% endif %}
 		{% assign tag_names = tag_names | strip %}
 

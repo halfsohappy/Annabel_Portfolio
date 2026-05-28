@@ -3,9 +3,6 @@
 // Board JS
 //
 //
-
-
-
 (function ($) {
 	'use strict';
 
@@ -387,12 +384,11 @@
 			// Tag metadata for chip injection
 			var TAG_META = {
 				personal:  { label: 'Personal',    bg: 'oklch(89% 0.057 293.283)',   fg: 'oklch(28.0% 0.069 297.543)' },
-				'class':   { label: 'Class',       bg: 'oklch(21.8% 0.058 336.281)', fg: '#fff' },
+				THE:       { label: 'Theater',      bg: '#936793',                    fg: '#fff' },
 				EMB:       { label: 'Embedded',    bg: 'oklch(68.1% 0.196 23.899)',  fg: '#1a0a0a' },
-				DSP:       { label: 'DSP',         bg: 'oklch(44.8% 0.238 269.460)', fg: '#fff' },
+				DSP:       { label: 'DSP',         bg: '#0dcaf0',                    fg: '#000' },
 				PCBD:      { label: 'PCB Design',  bg: 'oklch(69.0% 0.199 136.352)', fg: '#0e1f0a' },
-				WOOD:      { label: 'Woodworking', bg: 'oklch(81.4% 0.090 77.094)',  fg: '#2a1a06' },
-				'3D-CAD':  { label: '3D CAD',      bg: 'oklch(93.3% 0.061 186.119)', fg: '#0a1f1f' },
+				FAB:       { label: 'Fabrication',  bg: 'oklch(81.4% 0.090 77.094)',  fg: '#2a1a06' },
 				CS:        { label: 'CS',          bg: 'oklch(75.4% 0.120 8.490)',   fg: '#fff' }
 			};
 
@@ -401,7 +397,10 @@
 					var tags = (item.getAttribute('data-tags') || '').trim().split(/\s+/).filter(Boolean);
 					if (!tags.length) return;
 					var info = item.querySelector('.listing-item__info');
-					if (!info || info.querySelector('.listing-item__tags')) return;
+					if (!info) return;
+					// Always clear and re-inject so a stale first-run never blocks a correct second run
+					var existing = info.querySelector('.listing-item__tags');
+					if (existing) existing.remove();
 					var row = document.createElement('div');
 					row.className = 'listing-item__tags';
 					tags.forEach(function(t) {

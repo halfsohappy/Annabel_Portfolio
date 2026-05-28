@@ -1,7 +1,12 @@
 ---
 title: 'Portable Nixie Tube Pomodoro Timer'
 favorite: true
-subtitle: 'This one has it all: ICs from the 70s! 200 Volts! Extremely Competent Perfboard Circuits! And of course, USB-C.'
+subtitle:
+highlights:
+  - "ICs from the 70s!"
+  - "200 Volts!"
+  - "Extremely Competent Perfboard Circuits!"
+  - "And of course, USB-C."
 date: 2024-9-1 00:00:00
 description: 
 featured_image: '/images/thumbs/nixie.webp'
@@ -12,13 +17,16 @@ grid_height: auto-small
 grid_crop: cover
 grid_crop_position: center
 
+created_for: a mini project for ECE 495.
+status: Functional (but only just)
+complexity: High
+
 personal:
-class: true
+THE:
 EMB:
 DSP:
 PCBD:
-WOOD:
-3D-CAD: true
+FAB: true
 CS:
 ---
 

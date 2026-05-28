@@ -10,13 +10,16 @@ grid_height: auto-small
 grid_crop: cover
 grid_crop_position: center
 
+created_for: my sister
+status: Immortalized in photos
+complexity: Low
+
 personal: true
-class:
+THE:
 EMB:
 DSP:
 PCBD:
-WOOD: true
-3D-CAD:
+FAB: true
 CS:
 ---
 

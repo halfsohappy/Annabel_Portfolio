@@ -1,6 +1,12 @@
 ---
 title: 'Custom All-In-One PC'
-subtitle: 'This one has it all: Retro Vibes! Aluminum Extrusions! Christmas Spirit! Pop OS! And I think technically, USB-C.'
+subtitle:
+highlights:
+  - "Retro Vibes!"
+  - "Aluminum Extrusions!"
+  - "Christmas Spirit!"
+  - "Pop OS!"
+  - "And I think technically, USB-C."
 date: 2022-12-25 00:00:00
 description: 
 featured_image: '/images/thumbs/tessa_pc.webp'
@@ -11,13 +17,16 @@ grid_height: auto
 grid_crop: cover
 grid_crop_position: center
 
+created_for: my sister
+status: Still in her room!
+complexity: Medium
+
 personal: true
-class:
+THE:
 EMB:
 DSP:
 PCBD:
-WOOD:
-3D-CAD: true
+FAB: true
 CS:
 ---
 

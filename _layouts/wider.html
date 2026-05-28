@@ -34,7 +34,13 @@ layout: default
   .bento__box::before { display: none; }
 
   /* Grid placement */
-  .bento__box--desc { grid-area: desc; }
+  .bento__box--desc {
+    grid-area: desc;
+    border: 4px solid transparent;
+    background:
+      linear-gradient(var(--background-color), var(--background-color)) padding-box,
+      var(--tag-border-grad, var(--pretty-pink)) border-box;
+  }
   .bento__box--list { grid-area: list; }
   .bento__box--meta {
     grid-area: meta;
@@ -92,7 +98,7 @@ layout: default
   .bento__desc-text {
     font-family: var(--f-title);
     font-size: 1.4rem;
-    color: {{ site.data.settings.tag_colors.class }};
+    color: {{ site.data.settings.tag_colors.THE }};
     font-weight: 700;
     line-height: 1.5;
     margin: 0;
@@ -201,15 +207,15 @@ layout: default
 		<h1>{{ page.title }}</h1>
 		<br>
 		{% if page.date %}
-		<span class="badge text-bg-info">{{page.date | date: "%Y"}}</span>
+		<span class="badge" style="background:oklch(21.8% 0.058 336.281);color:oklch(100% 0 0)">{{page.date | date: "%Y"}}</span>
 		{% endif %}
   
 		{% if page.personal %}
 		<a class="badge" style="background:{{ site.data.settings.tag_colors.personal }};color:{{ site.data.settings.tag_active_text.personal }}" href="/list/?filter=personal">Personal Project</a>
 		{% endif %}
   
-		{% if page.class %}
-		<a class="badge" style="background:{{ site.data.settings.tag_colors.class }};color:{{ site.data.settings.tag_active_text.class }}" href="/list/?filter=class">Class Project</a>
+		{% if page.THE %}
+		<a class="badge" style="background:{{ site.data.settings.tag_colors.THE }};color:{{ site.data.settings.tag_active_text.THE }}" href="/list/?filter=THE">Theater</a>
 		{% endif %}
   
 		{% if page.EMB %}
@@ -224,12 +230,8 @@ layout: default
 		<a class="badge" style="background:{{ site.data.settings.tag_colors.PCBD }};color:{{ site.data.settings.tag_active_text.PCBD }}" href="/list/?filter=PCBD">PCB Design</a>
 		{% endif %}
   
-		{% if page.WOOD %}
-		<a class="badge" style="background:{{ site.data.settings.tag_colors.WOOD }};color:{{ site.data.settings.tag_active_text.WOOD }}" href="/list/?filter=WOOD">Woodworking</a>
-		{% endif %}
-  
-		{% if page['3D-CAD'] %}
-		<a class="badge" style="background:{{ site.data.settings.tag_colors['3D-CAD'] }};color:{{ site.data.settings.tag_active_text['3D-CAD'] }}" href="/list/?filter=3D-CAD">CAD</a>
+		{% if page.FAB %}
+		<a class="badge" style="background:{{ site.data.settings.tag_colors.FAB }};color:{{ site.data.settings.tag_active_text.FAB }}" href="/list/?filter=FAB">Fabrication</a>
 		{% endif %}
   
 		{% if page.CS %}
@@ -243,16 +245,21 @@ layout: default
 <section class="bento">
   {% assign stripe_colors = "" %}
   {% if page.personal %}{% assign stripe_colors = stripe_colors | append: site.data.settings.tag_colors.personal | append: "," %}{% endif %}
-  {% if page.class %}{% assign stripe_colors = stripe_colors | append: site.data.settings.tag_colors.class | append: "," %}{% endif %}
+  {% if page.THE %}{% assign stripe_colors = stripe_colors | append: site.data.settings.tag_colors.THE | append: "," %}{% endif %}
   {% if page.EMB %}{% assign stripe_colors = stripe_colors | append: site.data.settings.tag_colors.EMB | append: "," %}{% endif %}
   {% if page.DSP %}{% assign stripe_colors = stripe_colors | append: site.data.settings.tag_colors.DSP | append: "," %}{% endif %}
   {% if page.PCBD %}{% assign stripe_colors = stripe_colors | append: site.data.settings.tag_colors.PCBD | append: "," %}{% endif %}
-  {% if page.WOOD %}{% assign stripe_colors = stripe_colors | append: site.data.settings.tag_colors.WOOD | append: "," %}{% endif %}
-  {% if page['3D-CAD'] %}{% assign stripe_colors = stripe_colors | append: site.data.settings.tag_colors['3D-CAD'] | append: "," %}{% endif %}
+  {% if page.FAB %}{% assign stripe_colors = stripe_colors | append: site.data.settings.tag_colors.FAB | append: "," %}{% endif %}
   {% if page.CS %}{% assign stripe_colors = stripe_colors | append: site.data.settings.tag_colors.CS | append: "," %}{% endif %}
   {% assign stripe_arr = stripe_colors | split: "," %}
   {% assign stripe_clean = "" %}
   {% for c in stripe_arr %}{% if c != "" %}{% unless stripe_clean == "" %}{% assign stripe_clean = stripe_clean | append: "," %}{% endunless %}{% assign stripe_clean = stripe_clean | append: c %}{% endif %}{% endfor %}
+
+  {% assign stripe_w = 10 %}
+  {% assign grad_stops = "" %}
+  {% assign stripe_arr2 = stripe_clean | split: "," %}
+  {% for c in stripe_arr2 %}{% assign idx = forloop.index0 %}{% assign px_start = idx | times: stripe_w %}{% assign px_end = px_start | plus: stripe_w %}{% if grad_stops != "" %}{% assign grad_stops = grad_stops | append: ", " %}{% endif %}{% assign grad_stops = grad_stops | append: c | append: " " | append: px_start | append: "px " | append: px_end | append: "px" %}{% endfor %}
+  {% if grad_stops != "" %}{% assign tag_gradient = "repeating-linear-gradient(135deg, " | append: grad_stops | append: ")" %}{% else %}{% assign tag_gradient = "" %}{% endif %}
 
   <div class="bento__inner">
 
@@ -291,18 +298,18 @@ layout: default
     </div>
 
     {% if page.subtitle %}
-    <div class="bento__box bento__box--desc">
+    <div class="bento__box bento__box--desc"{% if tag_gradient != "" %} style="--tag-border-grad: {{ tag_gradient }};"{% endif %}>
       <div class="bento__desc">
         <p class="bento__desc-text">{{ page.subtitle }}</p>
       </div>
     </div>
     {% else %}
-    <div class="bento__box bento__box--desc"></div>
+    <div class="bento__box bento__box--desc"{% if tag_gradient != "" %} style="--tag-border-grad: {{ tag_gradient }};"{% endif %}></div>
     {% endif %}
 
     {% if page.highlights %}
     <div class="bento__box bento__box--list">
-      <h4 class="bento__box-title">This one has it all!</h4>
+      <h4 class="bento__box-title">This one has it all:</h4>
       <ul class="bento__box-list">
         {% for item in page.highlights %}<li>{{ item }}</li>{% endfor %}
       </ul>
@@ -326,23 +333,15 @@ layout: default
 </section>
 
 <script>
-window.addEventListener('load', function() {
+(function() {
   var sidebar = document.getElementById('toc-sidebar');
   var list    = document.getElementById('toc-list');
   var descBox = document.querySelector('.bento__box--desc');
   if (!sidebar || !descBox) return;
 
-  // Double rAF ensures fonts + layout are fully painted before measuring
-  requestAnimationFrame(function() {
-    requestAnimationFrame(function() {
-      sidebar.style.top = descBox.getBoundingClientRect().top + 'px';
-      sidebar.style.display = 'block';
-    });
-  });
-
-  // Build ToC from page headings — hide sidebar if none found
+  // Build ToC from page headings — bail entirely if none found
   var headings = document.querySelectorAll('.singles h2, .singles h3, .singles h4');
-  if (!headings.length) { sidebar.style.display = 'none'; return; }
+  if (!headings.length) return;
   headings.forEach(function(h, i) {
     if (!h.id) h.id = 'toc-' + i;
     var li = document.createElement('li');
@@ -353,5 +352,16 @@ window.addEventListener('load', function() {
     li.appendChild(a);
     list.appendChild(li);
   });
-});
+
+  // Position sidebar after fonts have loaded and reflowed layout
+  function place() {
+    sidebar.style.top = descBox.getBoundingClientRect().top + 'px';
+    sidebar.style.display = 'block';
+  }
+  var fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+  fontsReady.then(function() { requestAnimationFrame(place); });
+
+  // Re-place on resize in case layout shifts
+  window.addEventListener('resize', function() { requestAnimationFrame(place); });
+})();
 </script>

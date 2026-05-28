@@ -11,13 +11,16 @@ grid_height: auto-small
 grid_crop: cover
 grid_crop_position: center
 
+created_for: myself
+status: Incomplete
+complexity: Medium
+
 personal: true
-class:
+THE:
 EMB:
 DSP: 
 PCBD:
-WOOD:
-3D-CAD:
+FAB:
 CS:
 ---
 

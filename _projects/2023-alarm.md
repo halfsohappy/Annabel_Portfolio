@@ -1,6 +1,13 @@
 ---
 title: 'LED Matrix Alarm Clocks'
-subtitle: 'Four hardwood frames with LED Matrices for telling the time. This one has it all: Purpleheart! Pecan! Bolivian Rosewood! Red Oak! Various types of joinery! And of course, USB-C.'
+subtitle: 'Four hardwood frames with LED Matrices for telling the time.'
+highlights:
+  - "Purpleheart!"
+  - "Pecan!"
+  - "Bolivian Rosewood!"
+  - "Red Oak!"
+  - "Various types of joinery!"
+  - "And of course, USB-C."
 date: 2023-5-1 00:00:00
 description:
 featured_image: '/images/thumbs/alarm.webp'
@@ -11,14 +18,16 @@ grid_height: 2
 grid_crop: cover
 grid_crop_position: top
 
+created_for: experience in woodworking & embedded
+status: Functional but in need of further revision
+complexity: Medium-Rare
 
 personal: true
-class:
+THE:
 EMB: true
 DSP:
 PCBD:
-WOOD: true
-3D-CAD: true
+FAB: true
 CS: true
 ---
 

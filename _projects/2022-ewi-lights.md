@@ -10,13 +10,16 @@ grid_height: 2
 grid_crop: cover
 grid_crop_position: center
 
+created_for: myself
+status: since dismantled
+complexity: Low
+
 personal: true
-class:
+THE:
 EMB: true
 DSP: true
 PCBD:
-WOOD:
-3D-CAD:
+FAB:
 CS:
 ---
 

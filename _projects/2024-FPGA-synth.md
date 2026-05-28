@@ -1,6 +1,11 @@
 ---
 title: 'FPGA-based Synthesizer'
-subtitle: 'A class final: A polyphonic synthesizer that interfaces with MIDI instruments, all running on a custom soft-core FPGA. This one has it all: i2s! MIDI! WS2812 signaling protocol! Verilog!'
+subtitle: 'A class final: A polyphonic synthesizer that interfaces with MIDI instruments, all running on a custom soft-core FPGA.'
+highlights:
+  - "i2s!"
+  - "MIDI!"
+  - "WS2812 signaling protocol!"
+  - "Verilog!"
 date: 2024-3-1 00:00:00
 description:
 featured_image: '/images/thumbs/fpga.webp'
@@ -11,13 +16,18 @@ grid_height: auto-medium
 grid_crop: cover
 grid_crop_position: center
 
+
+created_for: final for ECE 350: Hardware Design
+status: Earned an A+!
+complexity: High
+
+
 personal: true
-class:
+THE:
 EMB: true
 DSP: true
 PCBD:
-WOOD:
-3D-CAD:
+FAB:
 CS: true
 ---
 

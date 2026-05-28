@@ -1,6 +1,12 @@
 ---
 title: 'v5 of Custom Wireless LED Bands PCB'
-subtitle: 'This one has it all: BMI160 IMU! Power Path! LED Strip Attachment! ESP32C3! And of course, USB-C.'
+subtitle:
+highlights:
+  - "BMI160 IMU!"
+  - "Power Path!"
+  - "LED Strip Attachment!"
+  - "ESP32C3!"
+  - "And of course, USB-C."
 date: 2024-7-16
 featured_image: '/images/thumbs/abLED5pcb.webp'
 permalink: /abLED5_PCB/
@@ -10,13 +16,16 @@ grid_height: auto-small
 grid_crop: cover
 grid_crop_position: center
 
+created_for: fast, easy accessory building with LED strip
+status: Fully Operational!
+complexity: Medium
+
 personal: true
-class:
+THE:
 EMB: true
 DSP: 
 PCBD: true
-WOOD:
-3D-CAD:
+FAB:
 CS:
 ---
 

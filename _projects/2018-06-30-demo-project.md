@@ -84,14 +84,13 @@ grid_crop_position: center
 #
 #  Project type (pick one — they're mutually exclusive):
 personal: true    # Personal project
-class:            # Class project
+THE:
 
 #  Technical discipline tags (set any combination to true):
 EMB:              # Embedded systems
 DSP:              # Digital signal processing
 PCBD:             # PCB design
-WOOD:             # Woodworking
-3D-CAD:           # 3D CAD / 3D printing
+FAB:
 CS:               # Computer science / software
 
 # SKILLS — Optional free-text skill summary, displayed as-is.

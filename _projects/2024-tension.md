@@ -11,14 +11,24 @@ grid_height: auto-large
 grid_crop: cover
 grid_crop_position: left
 
+created_for: 'ECE 495: Product Design'
+status: Earned an A+
+complexity: High
+highlights:
+  - twelve custom, fully wireless lighted accessories!
+  - a team of three Mech Es and one EE!
+  - an OLED *and* an E-paper display!
+  - a testing rig we eventually recycled into a bookshelf!
+  - Charging over a barrel jack (I'm sorry)
+
 personal:
-class: true
+THE:
 EMB: true
 DSP: 
 PCBD: 
-WOOD:
-3D-CAD: true
+FAB: true
 CS: true
+
 ---
 
 This was a highly involved group project for a product design class, and a full length write-up is coming soon; in the meantime, here is a one-pager we made as a group.
