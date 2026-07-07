@@ -1,0 +1,84 @@
+// - - - - - - - - - - - - - - - - - -
+
+// Utilities
+
+// Minimal replacements for the handful of Bootstrap classes still used in
+// templates and article content, so the full framework isn't shipped.
+
+// - - - - - - - - - - - - - - - - - -
+
+
+.clearfix::after {
+	display: block;
+	clear: both;
+	content: "";
+}
+
+.d-block {
+	display: block;
+}
+
+.mx-auto {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.rounded {
+	border-radius: 0.375rem;
+}
+
+.h-25 {
+	height: 25%;
+}
+
+.float-md-end {
+	@include mq(tabletp) {
+		float: right;
+	}
+}
+
+.col-md-6 {
+	@include mq(tabletp) {
+		width: 50%;
+	}
+}
+
+.badge {
+	display: inline-block;
+	padding: 0.35em 0.65em;
+	font-size: 0.75em;
+	font-weight: 700;
+	line-height: 1;
+	color: #fff;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: baseline;
+	border-radius: 0.375rem;
+}
+
+.btn {
+	display: inline-block;
+	padding: 0.375rem 0.75rem;
+	font-size: 1rem;
+	line-height: 1.5;
+	text-align: center;
+	border: 1px solid transparent;
+	border-radius: 0.375rem;
+	cursor: pointer;
+}
+
+.btn-primary {
+	background: #0d6efd;
+	border-color: #0d6efd;
+	color: #fff;
+
+	&:hover {
+		background: #0b5ed7;
+		border-color: #0a58ca;
+	}
+
+	&.active {
+		background: #0a58ca;
+		border-color: #0a53be;
+	}
+}

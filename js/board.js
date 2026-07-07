@@ -349,14 +349,20 @@
 				});
 
 				// Build repeating-conic-gradient striped borders from tag colors
-				// and compute dynamic border thickness from tile dimensions
+				// and compute dynamic border thickness from tile dimensions.
+				// Read every rect before writing any styles — interleaving the two
+				// forces a reflow per tile.
+				var itemRects = [];
 				items.forEach(function(item) {
+					itemRects.push(item.getBoundingClientRect());
+				});
+				items.forEach(function(item, itemIndex) {
 					var colors = (item.getAttribute('data-tag-colors') || '').split(',').filter(function(c) { return c.trim(); });
 					var link = item.querySelector('.listing-item__link');
 					if (!link) return;
 
 					// Dynamic border thickness: ~3% of the smaller dimension, clamped 3-8px
-					var rect = item.getBoundingClientRect();
+					var rect = itemRects[itemIndex];
 					var minDim = Math.min(rect.width, rect.height);
 					var thickness = Math.max(3, Math.min(8, Math.round(minDim * 0.03)));
 					var radius = Math.max(4, Math.round(minDim * 0.04));
@@ -385,15 +391,16 @@
 				});
 			}
 
-			// Tag metadata for chip injection
-			var TAG_META = {
-				personal:  { label: 'Personal',    bg: 'oklch(89% 0.057 293.283)',   fg: 'oklch(28.0% 0.069 297.543)' },
-				THE:       { label: 'Theater',      bg: '#936793',                    fg: '#fff' },
-				EMB:       { label: 'Embedded',    bg: 'oklch(68.1% 0.196 23.899)',  fg: '#1a0a0a' },
-				DSP:       { label: 'DSP',         bg: '#0dcaf0',                    fg: '#000' },
-				PCBD:      { label: 'PCB Design',  bg: 'oklch(69.0% 0.199 136.352)', fg: '#0e1f0a' },
-				FAB:       { label: 'Fabrication',  bg: 'oklch(81.4% 0.090 77.094)',  fg: '#2a1a06' },
-				CS:        { label: 'CS',          bg: 'oklch(75.4% 0.120 8.490)',   fg: '#fff' }
+			// Short chip labels per tag key; chip colors come from the .badge--*
+			// classes generated from _data/settings.yml, so they stay in sync.
+			var TAG_LABELS = {
+				personal: 'Personal',
+				THE: 'Theater',
+				EMB: 'Embedded',
+				DSP: 'DSP',
+				PCBD: 'PCB Design',
+				FAB: 'Fabrication',
+				CS: 'CS'
 			};
 
 			function injectTagChips() {
@@ -408,13 +415,11 @@
 					var row = document.createElement('div');
 					row.className = 'listing-item__tags';
 					tags.forEach(function(t) {
-						var meta = TAG_META[t];
-						if (!meta) return;
+						var label = TAG_LABELS[t];
+						if (!label) return;
 						var chip = document.createElement('span');
-						chip.className = 'listing-item__tag';
-						chip.textContent = meta.label;
-						chip.style.background = meta.bg;
-						chip.style.color = meta.fg;
+						chip.className = 'listing-item__tag badge--' + t;
+						chip.textContent = label;
 						row.appendChild(chip);
 					});
 					info.appendChild(row);

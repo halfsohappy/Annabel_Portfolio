@@ -2,8 +2,10 @@
 
 // Single page/post/project
 
+// .single (page layout) and .singles (wider article layout) share everything
+// except the text-column max-widths, set per-variant below the shared block.
+
 // - - - - - - - - - - - - - - - - - -
-$wid: 1;
 
 .intro {
 	
@@ -27,7 +29,8 @@ $wid: 1;
 	}
 }
 
-.single {
+.single,
+.singles {
 	padding-bottom: 40px;
 
 	@include mq(tabletp) {
@@ -47,30 +50,16 @@ $wid: 1;
 		margin-right: auto;
 		padding-left: 30px;
 		padding-right: 30px;
-		//max-width: 500px;
 
 		@include mq(tabletp) {
 			padding-left: 0;
 			padding-right: 0;
-			max-width: $wid * 60%;
-		}
-
-		@include mq(tabletl) {
-			max-width: $wid * 55%;
-		}
-
-		@include mq(laptop) {
-			max-width: $wid * 50%;
-		}
-
-		@include mq(desktop) {
-			max-width: $wid * 45%;
 		}
 	}
 
 	hr {
 		margin: 30px auto;
-		width: calc(100vw - 60px);
+		width: calc(100% - 60px);
 		max-width: 440px;
 
 		@include mq(tabletp) {
@@ -320,6 +309,134 @@ $wid: 1;
 				}
 			}
 		}
+	}
+}
+
+// Text-column measure per layout: .singles runs 10% wider at every breakpoint.
+
+.single {
+	h1, h2, h3, h4, h5, h6, p, ul, ol {
+
+		@include mq(tabletp) {
+			max-width: 60%;
+		}
+
+		@include mq(tabletl) {
+			max-width: 55%;
+		}
+
+		@include mq(laptop) {
+			max-width: 50%;
+		}
+
+		@include mq(desktop) {
+			max-width: 45%;
+		}
+	}
+}
+
+.singles {
+	h1, h2, h3, h4, h5, h6, p, ul, ol {
+		max-width: 75%;
+
+		@include mq(tabletp) {
+			max-width: 70%;
+		}
+
+		@include mq(tabletl) {
+			max-width: 65%;
+		}
+
+		@include mq(laptop) {
+			max-width: 60%;
+		}
+
+		@include mq(desktop) {
+			max-width: 55%;
+		}
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Figure captions
+// An indented line under an image renders as a language-plaintext code
+// block; restyle those as captions (small text with an accent tick) instead
+// of code chrome. Fenced code with an explicit language (```cpp …) is
+// unaffected and keeps normal code styling. Widths follow the text column
+// so the tick aligns with the figure's left edge.
+
+.single,
+.singles {
+
+	.language-plaintext.highlighter-rouge {
+		width: auto;
+		margin: 8px auto 0;
+		padding-left: 30px;
+		padding-right: 30px;
+		max-width: none;
+
+		@include mq(tabletp) {
+			padding-left: 0;
+			padding-right: 0;
+		}
+
+		.highlight {
+			margin: 0;
+			padding: 0;
+			background: none;
+			overflow: visible;
+		}
+
+		pre.highlight {
+			padding: 0 0 0 12px;
+			border-left: 3px solid $pretty-pink;
+		}
+
+		code {
+			font-family: $body-font;
+			font-size: 12.5px;
+			line-height: 1.55;
+			color: $text-medium-color;
+			white-space: pre-wrap;
+		}
+	}
+}
+
+.single .language-plaintext.highlighter-rouge {
+
+	@include mq(tabletp) {
+		max-width: 60%;
+	}
+
+	@include mq(tabletl) {
+		max-width: 55%;
+	}
+
+	@include mq(laptop) {
+		max-width: 50%;
+	}
+
+	@include mq(desktop) {
+		max-width: 45%;
+	}
+}
+
+.singles .language-plaintext.highlighter-rouge {
+	max-width: 75%;
+
+	@include mq(tabletp) {
+		max-width: 70%;
+	}
+
+	@include mq(tabletl) {
+		max-width: 65%;
+	}
+
+	@include mq(laptop) {
+		max-width: 60%;
+	}
+
+	@include mq(desktop) {
+		max-width: 55%;
 	}
 }
 
@@ -359,302 +476,5 @@ $wid: 1;
 		left: 0;
 		width: 100%;
 		height: 100%;
-	}
-}
-
-
-.singles {
-	padding-bottom: 40px;
-
-	@include mq(tabletp) {
-		padding-bottom: 50px;
-	}
-
-	@include mq(tabletl) {
-		padding-bottom: 60px;
-	}
-
-	@include mq(laptop) {
-		padding-bottom: 80px;
-	}
-
-	h1, h2, h3, h4, h5, h6, p, ul, ol {
-		margin-left: auto;
-		margin-right: auto;
-		padding-left: 30px;
-		padding-right: 30px;
-		max-width: 75%;
-
-		@include mq(tabletp) {
-			padding-left: 0;
-			padding-right: 0;
-			max-width: 10+ 60%;
-		}
-
-		@include mq(tabletl) {
-			max-width: 10+ 55%;
-		}
-
-		@include mq(laptop) {
-			max-width: 10+ 50%;
-		}
-
-		@include mq(desktop) {
-			max-width: 10+ 45%;
-		}
-	}
-
-	hr {
-		margin: 30px auto;
-		width: calc(100vw - 60px);
-		max-width: 440px;
-
-		@include mq(tabletp) {
-			margin-top: 40px;
-			margin-bottom: 40px;
-			margin-left: auto;
-			margin-right: auto;
-			width: auto;
-			max-width: 60%;
-		}
-
-		@include mq(tabletl) {
-			max-width: 55%;
-		}
-
-		@include mq(laptop) {
-			max-width: 50%;
-		}
-
-		@include mq(desktop) {
-			max-width: 45%;
-		}
-	}
-
-	blockquote,
-	figure {
-		max-width: 90%;
-		margin: 20px auto;
-
-		@include mq(tabletp) {
-			max-width: 83%;
-			margin: 30px auto;
-		}
-
-		@include mq(laptop) {
-			max-width: 75%;
-			margin: 40px auto;
-		}
-	}
-
-	blockquote p {
-		max-width: 100%;
-		padding: 0;
-	}
-
-	p a {
-		font-weight: $bold-weight;
-		border-bottom: 2px solid $accent-color;
-	}
-
-	p .button {
-		margin-top: 10px;
-	}
-
-	ul, ol {
-		ul, ol {
-			max-width: 100%;
-			padding-left: 25px;
-		}
-	}
-
-	.highlighter-rouge,
-	table {
-		margin: 20px auto;
-		width: 100%;
-		max-width: 90%;
-
-		@include mq(tabletp) {
-			margin: 30px auto;
-			max-width: 60%;
-		}
-
-		@include mq(tabletl) {
-			max-width: 55%;
-		}
-
-		@include mq(laptop) {
-			margin: 40px auto;
-			max-width: 50%;
-		}
-
-		@include mq(desktop) {
-			max-width: 45%;
-		}
-	}
-
-	.highlight {
-		display: block;
-		padding: 0;
-		line-height: 1.5;
-		font-size: $p-small*0.85;
-		line-height: $p-lineheight;
-		overflow: auto;
-
-		@include mq(tabletp) {
-			font-size: $p-medium*0.85;
-		}
-
-		@include mq(laptop) {
-			font-size: $p-large*0.85;
-		}
-
-		.highlight {
-			padding: 20px;
-
-			@include mq(tabletp) {
-				padding: 30px;
-			}
-
-			@include mq(laptop) {
-				padding: 40px;
-			}
-		}
-	}
-
-	.table-wrap {
-		display: block;
-		width: 100%;
-		max-width: 90%;
-		margin: 0 auto;
-		overflow-x: auto;
-
-		table {
-			max-width: 100%;
-		}
-
-		@include mq(tabletp) {
-			max-width: 60%;
-		}
-
-		@include mq(tabletl) {
-			max-width: 55%;
-		}
-
-		@include mq(laptop) {
-			max-width: 50%;
-		}
-
-		@include mq(desktop) {
-			max-width: 45%;
-		}
-	}
-
-	table {
-		min-width: 600px;
-		border: 2px solid $text-dark-color;
-
-		thead {
-			background: $text-dark-color;
-			color: $background-color;
-			text-align: left;
-			font-weight: $bold-weight;
-
-			th {
-				font-weight: $bold-weight;
-			}
-		}
-
-		th, td {
-			padding: 10px;
-			font-size: $p-small;
-			font-weight: $p-weight;
-
-			@include mq(tabletp) {
-				padding: 15px;
-			}
-
-			@include mq(laptop) {
-				padding: 20px;
-				font-size: $p-medium;
-			}
-		}
-		
-		tr {
-
-			&:nth-child(2n) {
-				background: $background-alt-color;
-			}
-		}
-	}
-
-	sup a.footnote {
-		display: inline-block;
-		margin-left: 5px;
-		min-width: 16px;
-		height: 16px;
-		border-radius: 100%;
-		border-bottom: none;
-		padding: 1px 3px;
-		background: $background-alt-color;
-		font-size: 10px;
-		text-align: center;
-		color: $text-light-color;
-
-		&:hover {
-			background: $text-light-color;
-			color: $background-color;
-		}
-	}
-
-	.footnotes {
-		margin-top: 40px;
-
-		@include mq(tabletp) {
-			margin-top: 60px;
-		}
-
-		@include mq(laptop) {
-			margin-top: 80px;
-		}
-
-		ol {
-			list-style: none;
-			counter-reset: footnotes;
-
-			li {
-				margin-top: 5px;
-				font-size: 13px;
-				counter-increment: footnotes;
-
-				&:before {
-					content: counter(footnotes);
-				    box-sizing: border-box;
-					display: inline-block;
-					margin-right: 3px;
-					width: 20px;
-					height: 20px;
-					border-radius: 100%;
-					border-bottom: none;
-					padding: 2px 3px;
-					background: $background-alt-color;
-					font-size: 11px;
-					font-weight: $bold-weight;
-					text-align: center;
-					color: $text-light-color;
-				}
-				
-				p {
-					display: inline;
-					max-width: 100%;
-					font-size: 13px;
-
-					a.reversefootnote {
-						border-bottom: 0;
-						vertical-align: sub;
-					}
-				}
-			}
-		}
 	}
 }

@@ -3,7 +3,7 @@ title: 'Software Platform For Wearable Sensors'
 subtitle: 'A standalone software platform for controlling lights, sounds, and other technical aspects of theater based on motion and orientation data from wearable sensors.'
 date: 2026-4-1 00:00:00
 description:
-featured_image: '/images/gooey/thumb_point.png'
+featured_image: '/images/thumbs/gooey.webp'
 
 created_for: 'Senior Thesis'
 status: Complete (earned Highest Distinction!)

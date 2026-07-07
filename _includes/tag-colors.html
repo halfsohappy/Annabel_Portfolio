@@ -1,0 +1,14 @@
+{%- comment -%}
+Emits a comma-separated list of tag colors for the given item's active tags,
+in _data/settings.yml tag_colors order.
+Usage: {% capture my_colors %}{% include tag-colors.html item=page %}{% endcapture %}
+{%- endcomment -%}
+{%- assign _colors = "" -%}
+{%- for tc in site.data.settings.tag_colors -%}
+	{%- assign _key = tc[0] -%}
+	{%- if include.item[_key] -%}
+		{%- unless _colors == "" -%}{%- assign _colors = _colors | append: "," -%}{%- endunless -%}
+		{%- assign _colors = _colors | append: tc[1] -%}
+	{%- endif -%}
+{%- endfor -%}
+{{- _colors -}}

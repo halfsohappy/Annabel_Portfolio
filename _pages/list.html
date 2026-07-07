@@ -34,6 +34,13 @@ permalink: /list/
     border-color: #7c5cbf;
     color: #7c5cbf;
   }
+  .filter-btn:active {
+    transform: scale(0.95);
+  }
+  .filter-btn:focus-visible {
+    outline: 2px solid #7c5cbf;
+    outline-offset: 2px;
+  }
   .filter-btn.active {
     background: #7c5cbf;
     border-color: #7c5cbf;
@@ -41,8 +48,9 @@ permalink: /list/
   }
   /* Per-tag active/hover colors — driven by _data/settings.yml tag_colors */
   {% for tc in site.data.settings.tag_colors %}
-  .filter-btn[data-filter="{{ tc[0] }}"]:hover { border-color: {{ tc[1] }}; color: {{ tc[1] }}; }
-  .filter-btn[data-filter="{{ tc[0] }}"].active { background: {{ tc[1] }}; border-color: {{ tc[1] }}; color: {{ site.data.settings.tag_active_text[tc[0]] | default: "#fff" }}; }
+  {% assign _key = tc[0] %}
+  .filter-btn[data-filter="{{ _key }}"]:hover { border-color: {{ tc[1] }}; color: {{ tc[1] }}; }
+  .filter-btn[data-filter="{{ _key }}"].active { background: {{ tc[1] }}; border-color: {{ tc[1] }}; color: {{ site.data.settings.tag_active_text[_key] | default: "#fff" }}; }
   {% endfor %}
   /* Year buttons — visually distinct from multi-select tag pills */
   .filter-btn.filter-btn--year {
@@ -53,8 +61,8 @@ permalink: /list/
     text-align: center;
     letter-spacing: 0.02em;
   }
-  .filter-btn.filter-btn--year:hover { border-color: #936793; color: #936793; border-style: solid; }
-  .filter-btn.filter-btn--year.active { background: #936793; border-color: #936793; color: #fff; border-style: solid; }
+  .filter-btn.filter-btn--year:hover { border-color: var(--year-accent); color: var(--year-accent); border-style: solid; }
+  .filter-btn.filter-btn--year.active { background: var(--year-accent); border-color: var(--year-accent); color: #fff; border-style: solid; }
   .filter-row {
     display: flex;
     flex-wrap: wrap;
@@ -144,14 +152,6 @@ permalink: /list/
     font-weight: 500;
     padding: 3px 9px;
   }
-  .badge-fabrication {
-    background: {{ site.data.settings.tag_colors.FAB }};
-    color: #fff;
-  }
-  .badge-cs {
-    background: {{ site.data.settings.tag_colors.CS }};
-    color: #fff;
-  }
   .project-list-tags .badge[data-filter] {
     cursor: pointer;
   }
@@ -185,13 +185,9 @@ permalink: /list/
   <div class="list-filter-bar">
     <div class="filter-row">
       <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="personal">Personal Project</button>
-      <button class="filter-btn" data-filter="THE">Theater</button>
-      <button class="filter-btn" data-filter="EMB">Embedded</button>
-      <button class="filter-btn" data-filter="DSP">DSP</button>
-      <button class="filter-btn" data-filter="PCBD">PCB Design</button>
-      <button class="filter-btn" data-filter="FAB">Fabrication</button>
-      <button class="filter-btn" data-filter="CS">CS</button>
+      {% for tc in site.data.settings.tag_colors %}
+      <button class="filter-btn" data-filter="{{ tc[0] }}">{{ site.data.settings.tag_labels[tc[0]] | default: tc[0] }}</button>
+      {% endfor %}
     </div>
     <div class="filter-row">
       {% assign all_years = "" %}
@@ -215,39 +211,16 @@ permalink: /list/
   <div class="project-list">
 
   {% for thing in site.projects reversed %}
-    {% assign tags = "" %}
-    {% if thing.personal %}{% assign tags = tags | append: " personal" %}{% endif %}
-    {% if thing.THE %}{% assign tags = tags | append: " THE" %}{% endif %}
-    {% if thing.EMB %}{% assign tags = tags | append: " EMB" %}{% endif %}
-    {% if thing.DSP %}{% assign tags = tags | append: " DSP" %}{% endif %}
-    {% if thing.PCBD %}{% assign tags = tags | append: " PCBD" %}{% endif %}
-    {% if thing.FAB %}{% assign tags = tags | append: " FAB" %}{% endif %}
-    {% if thing.CS %}{% assign tags = tags | append: " CS" %}{% endif %}
+    {% capture tags %}{% include tag-names.html item=thing %}{% endcapture %}
+    {% capture tag_colors %}{% include tag-colors.html item=thing %}{% endcapture %}
 
-    {% assign tag_colors = "" %}
-    {% if thing.personal %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.personal | append: "," %}{% endif %}
-    {% if thing.THE %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.THE | append: "," %}{% endif %}
-    {% if thing.EMB %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.EMB | append: "," %}{% endif %}
-    {% if thing.DSP %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.DSP | append: "," %}{% endif %}
-    {% if thing.PCBD %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.PCBD | append: "," %}{% endif %}
-    {% if thing.FAB %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.FAB | append: "," %}{% endif %}
-    {% if thing.CS %}{% assign tag_colors = tag_colors | append: site.data.settings.tag_colors.CS | append: "," %}{% endif %}
-    {% assign tag_colors = tag_colors | strip | remove_last: "," %}
-
-    <a class="project-list-item{% if thing.layout == 'external' %} project-list-item--external{% endif %}" href="{% if thing.layout == 'external' %}{{thing.external_url}}{% else %}{{thing.permalink}}{% endif %}"{% if thing.layout == 'external' %} target="_blank" rel="noopener noreferrer"{% endif %} data-tags="{{tags | strip}}" data-year="{{thing.date | date: '%Y'}}" data-tag-colors="{{ tag_colors }}">
+    <a class="project-list-item{% if thing.layout == 'external' %} project-list-item--external{% endif %}" href="{% if thing.layout == 'external' %}{{thing.external_url}}{% else %}{{thing.permalink}}{% endif %}"{% if thing.layout == 'external' %} target="_blank" rel="noopener noreferrer"{% endif %} data-tags="{{ tags }}" data-year="{{thing.date | date: '%Y'}}" data-tag-colors="{{ tag_colors }}">
       <div class="project-list-accent"></div>
       <div class="project-list-body">
         <div class="project-list-title">{{thing.title}}{% if thing.layout == 'external' %} <span class="project-list-external-icon" title="Opens external link">↗</span>{% endif %}</div>
         {% if thing.subtitle %}<div class="project-list-subtitle">{{thing.subtitle}}</div>{% endif %}
         <div class="project-list-tags">
-          {% if thing.date %}<span class="badge" style="background:oklch(21.8% 0.058 336.281);color:oklch(100% 0 0)">{{thing.date | date: "%Y"}}</span>{% endif %}
-          {% if thing.personal %}<span class="badge" style="background:{{ site.data.settings.tag_colors.personal }};color:{{ site.data.settings.tag_active_text.personal }}" data-filter="personal">Personal Project</span>{% endif %}
-          {% if thing.THE %}<span class="badge" style="background:{{ site.data.settings.tag_colors.THE }};color:{{ site.data.settings.tag_active_text.THE }}" data-filter="THE">Theater</span>{% endif %}
-          {% if thing.EMB %}<span class="badge" style="background:{{ site.data.settings.tag_colors.EMB }};color:{{ site.data.settings.tag_active_text.EMB }}" data-filter="EMB">Embedded</span>{% endif %}
-          {% if thing.DSP %}<span class="badge" style="background:{{ site.data.settings.tag_colors.DSP }};color:{{ site.data.settings.tag_active_text.DSP }}" data-filter="DSP">DSP</span>{% endif %}
-          {% if thing.PCBD %}<span class="badge" style="background:{{ site.data.settings.tag_colors.PCBD }};color:{{ site.data.settings.tag_active_text.PCBD }}" data-filter="PCBD">PCB Design</span>{% endif %}
-          {% if thing.FAB %}<span class="badge" style="background:{{ site.data.settings.tag_colors.FAB }};color:{{ site.data.settings.tag_active_text.FAB }}" data-filter="FAB">Fabrication</span>{% endif %}
-          {% if thing.CS %}<span class="badge" style="background:{{ site.data.settings.tag_colors.CS }};color:{{ site.data.settings.tag_active_text.CS }}" data-filter="CS">CS</span>{% endif %}
+          {% include tag-badges.html item=thing mode="filter" %}
         </div>
       </div>
     </a>

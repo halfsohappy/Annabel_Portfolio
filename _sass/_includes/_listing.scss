@@ -69,7 +69,9 @@
 		inset: 0;
 	}
 
-	@include mq(tabletl) {
+	// Hover reveal only where a real pointer can hover; touch devices keep
+	// the overlay permanently visible instead (see .listing-item__content).
+	@media (hover: hover) and (min-width: $break-tabletl) {
 
 		&:hover {
 			transform: scale(1.02);
@@ -136,18 +138,19 @@
 	overflow: hidden;
 	background: oklch(63.2% 0.038 307.740 / 0.6);
 
-	opacity: 0;
-	visibility: hidden;
-	//@include transition(all 0.3s ease-in-out);
+	opacity: 1;
+	visibility: visible;
 
-	@include mq(mobilep) {
-		opacity: 1;
-		visibility: visible;
+	// Hidden until hover only on devices that can hover (revealed by
+	// .listing-item__link:hover above); everywhere else it stays visible.
+	@media (hover: hover) and (min-width: $break-tabletl) {
+		opacity: 0;
+		visibility: hidden;
 	}
 }
 
 .listing-item__content--top {
-	align-items: top;
+	align-items: flex-start;
 }
 
 .listing-item__content--bottom {
@@ -165,13 +168,12 @@
 
 .listing-item__info {
 	width: 100%;
-	opacity: 0;
-	@include translate(0,10px);
-	//@include transition(all 0.3s ease-in-out);
+	opacity: 1;
+	@include translate(0,0);
 
-	@include mq(mobilep) {
-		opacity: 1;
-		@include translate(0,0);
+	@media (hover: hover) and (min-width: $break-tabletl) {
+		opacity: 0;
+		@include translate(0,10px);
 	}
 }
 
