@@ -17,8 +17,8 @@ highlights:
 
 permalink: /Thesis/
 layout: wider
-grid_width: auto-large
-grid_height: auto-large
+grid_width: 3
+grid_height: 3
 grid_crop: cover
 grid_crop_position: top
 

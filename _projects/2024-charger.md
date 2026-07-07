@@ -17,9 +17,9 @@ highlights:
   - "Mounting holes!"
   - "And of course, USB-C."
 
-created_for: personal convenience
-status: Limited Functionality
-complexity: Low
+created_for: 'personal convenience'
+status: "Limited Functionality"
+complexity: "Low"
 
 personal: true
 THE:
