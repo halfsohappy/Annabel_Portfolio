@@ -17,9 +17,9 @@ grid_height: 3
 grid_crop: cover
 grid_crop_position: left
 
-created_for: complimenting my own LED wearables
-status: Fully functional but limited integration with other wearables
-complexity: Medium
+created_for: 'complimenting my own LED wearables'
+status: "Fully functional but limited integration with other wearables"
+complexity: "Medium"
 
 personal: true
 THE: true

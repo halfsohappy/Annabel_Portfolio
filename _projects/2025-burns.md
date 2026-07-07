@@ -1,6 +1,6 @@
 ---
 title: 'Wearable Lighting for Mr. Burns, a Post-Electric Play'
-subtitle: ""
+subtitle: "Worked with a full crew to design and construct wearable, wireless lighting for Duke's Fall 2025 Mainstage"
 date: 2025-11-20 00:00:00
 description:
 featured_image: '/images/burns/all_light.jpg'
@@ -9,10 +9,9 @@ created_for: 'Duke Theater Studies'
 status: Complete & Successful
 complexity: High
 highlights:
-  - 
-  - 
-  -
-  - 
+  - The Divine Simpsons!
+  - A Moravian Star!
+  - Symbolization of the reclamation of nature! 
   - and of course, USB-C.
 
 permalink: /Burns/
@@ -77,11 +76,6 @@ Bart's crown was the headpiece I had the least involvement in, in construction a
 
 These boards prioritized small size over nearly everything and featured a single output that exposed two general purpose input/output pins and was capable of supplying 1.5A @ 3.3V. This made them excellent for the twig crown, which used a single LED strip and had a small space in the back between the headband and horizontal twig rings where the board and battery could be tucked away. The LED strip used in the design had individually addressable RGB LEDs, and so to simplify control while still offering flexibility to the lighting designer, the transmitter was programmed to have Bart's crown appear as a fixture with three RGB lights, and the receiver microcontroller in the crown made a 3-color gradient around the inner circumference based on those values.
 
-![](/images/burns/bart_pcb.jpeg){:alt="The PCB used in Bart's crown"}
-
-	PCB used in Bart's crown, prior to installation in prop.
-
-
 ![](/images/burns/bart_set.jpg){:alt="Bart's crown in action"}
 
 	Bart gazes at the lit up set. Photo by Huth Photo.
@@ -126,3 +120,4 @@ Ultimately, the headpieces were a theatrical success, though that's not to say t
 ![](/images/burns/all_light.jpg){:width="100%" alt="The headpieces in action"}
 
   The headpieces in action. Photo by Huth Photo.
+
