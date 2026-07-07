@@ -3,7 +3,6 @@
 
 // - - - - - - - - - - Foundations
 
-@import "bootstrap-5.3.3/main";
 @import "_reset";
 @import "_mixins";
 @import "_plugins";
@@ -163,6 +162,7 @@ $grid-columns-mobile: {{ _mc }};
   --accent-color:         {{ site.data.settings.color_settings.accent_color }};
   --border-color:         {{ site.data.settings.color_settings.border_color }};
   --pretty-pink:          {{ site.data.settings.color_settings.pretty_pink }};
+  --year-accent:          {{ site.data.settings.color_settings.year_accent_color }};
   --f-body:               #{$body-font};
   --f-title:              #{$title-font};
 }
@@ -172,6 +172,7 @@ $grid-columns-mobile: {{ _mc }};
 // - - - - - - - - - - Global styles
 
 @import "_basic";
+@import "_utilities";
 
 @import "_includes/_header";
 @import "_includes/_footer";
@@ -184,6 +185,23 @@ $grid-columns-mobile: {{ _mc }};
 @import "_includes/_contact-form";
 @import "_includes/_list";
 @import "_includes/_about";
-@import "_includes/_blog";
+
+
+// - - - - - - - - - - Tag badge colors (generated from _data/settings.yml)
+// Kept after all imports so these win the cascade over the .badge base class.
+
+.badge--year {
+  background: {{ site.data.settings.color_settings.year_badge_color }};
+  color: oklch(100% 0 0);
+}
+{% for tc in site.data.settings.tag_colors %}
+{% assign _key = tc[0] %}
+// a.badge--*:hover keeps badge text color from being overridden by the global a:hover
+.badge--{{ _key }},
+a.badge--{{ _key }}:hover {
+  background: {{ tc[1] }};
+  color: {{ site.data.settings.tag_active_text[_key] | default: "#fff" }};
+}
+{% endfor %}
 
 

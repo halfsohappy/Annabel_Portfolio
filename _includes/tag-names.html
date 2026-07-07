@@ -1,0 +1,14 @@
+{%- comment -%}
+Emits a space-separated list of tag keys active on the given item,
+in _data/settings.yml tag_colors order.
+Usage: {% capture my_tags %}{% include tag-names.html item=page %}{% endcapture %}
+{%- endcomment -%}
+{%- assign _names = "" -%}
+{%- for tc in site.data.settings.tag_colors -%}
+	{%- assign _key = tc[0] -%}
+	{%- if include.item[_key] -%}
+		{%- unless _names == "" -%}{%- assign _names = _names | append: " " -%}{%- endunless -%}
+		{%- assign _names = _names | append: _key -%}
+	{%- endif -%}
+{%- endfor -%}
+{{- _names -}}

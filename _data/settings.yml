@@ -47,7 +47,7 @@ tag_active_text:
 
 # Full display names for tags
 tag_labels:
-  personal: "Personal"
+  personal: "Personal Project"
   THE: "Theater"
   EMB: "Embedded"
   DSP: "DSP"
@@ -98,6 +98,10 @@ my_social_settings:
 color_settings:
   pretty_pink: 'oklch(89% 0.057 293.283)'
   pink_white: 'oklch(98.3% 0.001 12.858)'
+
+  # Year badge fill and the purple accent used for year filters / bento titles
+  year_badge_color: 'oklch(21.8% 0.058 336.281)'
+  year_accent_color: '#936793'
 
 
   background_color: 'oklch(100% 0 0)'

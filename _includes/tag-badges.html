@@ -1,0 +1,24 @@
+{%- comment -%}
+Renders the year badge plus one badge per active tag on the given item.
+Colors come from the .badge--* classes generated in css/style.scss.
+Usage: {% include tag-badges.html item=page mode="link" %}
+	mode="link"   — badges link to the filtered list view
+	mode="filter" — badges carry data-filter attributes (list-page JS filtering)
+	mode omitted  — plain, non-interactive badges
+{%- endcomment -%}
+{%- if include.item.date -%}
+<span class="badge badge--year">{{ include.item.date | date: "%Y" }}</span>
+{%- endif -%}
+{%- for tc in site.data.settings.tag_colors -%}
+{%- assign _key = tc[0] -%}
+{%- if include.item[_key] -%}
+{%- assign _label = site.data.settings.tag_labels[_key] | default: _key %}
+{% if include.mode == "link" -%}
+<a class="badge badge--{{ _key }}" href="/list/?filter={{ _key }}">{{ _label }}</a>
+{%- elsif include.mode == "filter" -%}
+<span class="badge badge--{{ _key }}" data-filter="{{ _key }}">{{ _label }}</span>
+{%- else -%}
+<span class="badge badge--{{ _key }}">{{ _label }}</span>
+{%- endif -%}
+{%- endif -%}
+{%- endfor -%}

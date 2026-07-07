@@ -3,7 +3,7 @@ title: 'An Accessible Ecosystem for Intuitive Interactions Between Technology an
 subtitle: ""
 date: 2026-4-1 00:00:00
 description:
-featured_image: '/images/trio/fire_test.png'
+featured_image: '/images/thumbs/thesis.webp'
 
 created_for: 'Duke Theater Studies'
 status: Earned Highest Distinction

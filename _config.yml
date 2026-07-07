@@ -7,9 +7,6 @@ collections:
   pages:
     output: true
     permalink: /:name
-  posts:
-    output: true
-    permalink: /blog/:slug
   projects:
     output: true
     permalink: /project/:slug
@@ -29,15 +26,9 @@ defaults:
   -
     scope:
       path: ""
-      type: "posts"
-    values:
-      layout: "post"
-  -
-    scope:
-      path: ""
       type: "projects"
     values:
-      layout: "project"
+      layout: "wider"
 
 markdown: kramdown
 
@@ -52,12 +43,8 @@ sass:
   quiet_deps: true
 
 plugins:
-  - jekyll-paginate
   - jekyll-sitemap
   - jekyll-figure
-
-paginate: 10
-paginate_path: "/blog/page:num/"
 
 grid_alignments:
   - top

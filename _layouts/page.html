@@ -8,37 +8,7 @@ layout: default
 
 		<h1>{{ page.title }}</h1>
 		<br>
-		{% if page.date %}
-		<span class="badge" style="background:oklch(21.8% 0.058 336.281);color:oklch(100% 0 0)">{{page.date | date: "%Y"}}</span>
-		{% endif %}
-  
-		{% if page.personal %}
-		<span class="badge" style="background:{{ site.data.settings.tag_colors.personal }};color:{{ site.data.settings.tag_active_text.personal }}">Personal Project</span>
-		{% endif %}
-  
-		{% if page.THE %}
-		<span class="badge" style="background:{{ site.data.settings.tag_colors.THE }};color:{{ site.data.settings.tag_active_text.THE }}">Theater</span>
-		{% endif %}
-  
-		{% if page.EMB %}
-		<span class="badge" style="background:{{ site.data.settings.tag_colors.EMB }};color:{{ site.data.settings.tag_active_text.EMB }}">Embedded</span>
-		{% endif %}
-  
-		{% if page.DSP %}
-		<span class="badge" style="background:{{ site.data.settings.tag_colors.DSP }};color:{{ site.data.settings.tag_active_text.DSP }}">DSP</span>
-		{% endif %}
-  
-		{% if page.PCBD %}
-		<span class="badge" style="background:{{ site.data.settings.tag_colors.PCBD }};color:{{ site.data.settings.tag_active_text.PCBD }}">PCB Design</span>
-		{% endif %}
-  
-		{% if page.FAB %}
-		<span class="badge" style="background:{{ site.data.settings.tag_colors.FAB }};color:{{ site.data.settings.tag_active_text.FAB }}">Fabrication</span>
-		{% endif %}
-  
-		{% if page.CS %}
-		<span class="badge" style="background:{{ site.data.settings.tag_colors.CS }};color:{{ site.data.settings.tag_active_text.CS }}">CS</span>
-		{% endif %}
+		{% include tag-badges.html item=page %}
 		<p>{{ page.subtitle }}</p>
   
 	</div>
@@ -47,6 +17,6 @@ layout: default
 
 <section class="single">
 
-	{{ page.content }}
+	{{ page.content | replace: '<img src', '<img loading="lazy" src' }}
 
 </section>

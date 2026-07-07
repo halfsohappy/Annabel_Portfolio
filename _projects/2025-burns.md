@@ -3,7 +3,7 @@ title: 'Wearable Lighting for Mr. Burns, a Post-Electric Play'
 subtitle: "Worked with a full crew to design and construct wearable, wireless lighting for Duke's Fall 2025 Mainstage"
 date: 2025-11-20 00:00:00
 description:
-featured_image: '/images/burns/all_light.jpg'
+featured_image: '/images/thumbs/burns.webp'
 
 created_for: 'Duke Theater Studies'
 status: Complete & Successful
@@ -34,7 +34,7 @@ To support my Graduation with Distinction project at Duke University, I implemen
 
 I had varying levels of involvement in the construction and design of each headpiece, from sewing a strip of LEDs into a finished prop to modeling and printing a crown from the ground up. I also designed and constructed a wireless DMX transmitter to allow the headpieces to be controlled from the theater's lighting console.
 
-![](/images/burns/divine_simpsons.jpg){:width="100%" alt="The Divine Simpsons"}
+![](/images/burns/divine_simpsons_web.webp){:width="100%" alt="The Divine Simpsons"}
 
 	The 'Divine Simpsons'. Photo by Huth Photo.
 
@@ -60,9 +60,9 @@ The transmitter that made it into the show was the last in a series of iteration
 That final unit was the latest in a long line of revisions. The first was the design built for *GOOD*; the limited display meant each input method had a very specific command, and the size difference between its USB-C input and its massive DMX jack meant it had a tendency to rest on its side. The first of 3 designs in the 25-26 academic year introduced new features such as a weighted base to prevent torque from the large DMX cable causing it to slide around the tech table, but was ultimately redesigned because the screen was nonfunctional (I received a broken part) and the knobs on the side were too difficult to manipulate. The next design decreased width by making the weights dictate the length of the device, and was the first design to place the antenna on the back and to fully embrace the two-tone look — but its screen was simply too small to display any more than one piece of information when viewed from a standard distance, and for that reason I redesigned/remade the transmitter for a final time.
 
 <div class="gallery" data-columns="4">
-	<img src="/images/burns/tx1.png">
+	<img src="/images/burns/tx1_web.webp">
 	<img src="/images/burns/tx2.jpeg">
-	<img src="/images/burns/tx3.png">
+	<img src="/images/burns/tx3_web.webp">
 	<img src="/images/burns/tx4_front.jpeg">
 </div>
 
@@ -76,7 +76,7 @@ Bart's crown was the headpiece I had the least involvement in, in construction a
 
 These boards prioritized small size over nearly everything and featured a single output that exposed two general purpose input/output pins and was capable of supplying 1.5A @ 3.3V. This made them excellent for the twig crown, which used a single LED strip and had a small space in the back between the headband and horizontal twig rings where the board and battery could be tucked away. The LED strip used in the design had individually addressable RGB LEDs, and so to simplify control while still offering flexibility to the lighting designer, the transmitter was programmed to have Bart's crown appear as a fixture with three RGB lights, and the receiver microcontroller in the crown made a 3-color gradient around the inner circumference based on those values.
 
-![](/images/burns/bart_set.jpg){:alt="Bart's crown in action"}
+![](/images/burns/bart_set_web.webp){:alt="Bart's crown in action"}
 
 	Bart gazes at the lit up set. Photo by Huth Photo.
 
@@ -87,7 +87,7 @@ Marge's headdress — a cerulean isicholo — had a similar build process to Bar
 
 The filament also posed a control challenge. Unlike LED strip — which can run directly off a power source, at voltages as low as 3V, and be dimmed/brightened over software alone — LED filament like the kind in Marge's headdress is a simpler type of LED and lacks integrated digital control. It also needs a higher voltage as well as managed current, and its power source needs to be adjusted directly in order to brighten or dim the LED. For this show, I had already been explicitly informed that the sole cue for these lights was to be a slow fade up from zero, and so analog dimming was a must have. Complicating things, Marge's headdress was designed to use the same model of PCB as Bart which limited the output to only two pins. To achieve analog dimming, the independent strands of LED filament were organized into a top and bottom group, each of which was then hooked up to a circuit known as a CC driver that only required one pin for dimming each. The specific CC drivers I used were also necessary as they were capable of boosting the voltage to as high as 40 volts; the longest LED filament in the headdress needed 24V to turn on, and I had no other way of supplying that with my 3.3V microcontroller and 3.7V battery. Thankfully, the headdress had plenty of room inside to hold the CC drivers, as well as space for a large battery and even an extra power supply module to really push the lumen output. The headdress appeared to the board as two dimmable fixtures, representing the top filament and bottom two filaments.
 
-![](/images/burns/marge_bows.jpg){:alt="Marge's isicholo"}
+![](/images/burns/marge_bows_web.webp){:alt="Marge's isicholo"}
 
 	Marge's isicholo (with proud actor). Photo by Anthony Garza.
 
@@ -97,7 +97,7 @@ The build processes for Lisa's and Homer's headpieces were distinct from those f
 
 Homer's design was the simplest of the two, and the simplest headpiece overall. I modeled an almost cartoon-like hardhat/helmet that was large enough to go over a thin plastic hardhat we had in the shop. The model was printed in four pieces in a transparent TPU filament (a flexible plastic) with a gyroid patterned infill, so the light shining through would reveal swirling patterns. Brass pins held the four pieces together in order to preserve its slight flexibility. The thinner hardhat was then covered in LED strip, with a microcontroller, power switch, and battery mounted as well. An inch-thick foam tape was applied onto the sides of the thinner hardhat, the flexible outer helmet stretched around the tape, and tacks stuck through the outer helmet and firmly into the foam. To preserve translucency while matching the other colors in the costume, I blended alcohol markers on the surface of the helmet. The helmet used addressable RGB LED strip like Bart's crown, but I opted to have it appear to the board as one single-color dimmable fixture. This was so I could run a more complicated program on the microcontroller that simulated pulsing energy under the helmet — a flame-like orange/red that had streaks of crimson, yellow, and occasionally even nuclear green pulse along the surface.
 
-![](/images/burns/homer_touch.jpg){:width="100%" alt="The performers raise the headpieces"}
+![](/images/burns/homer_touch_web.webp){:width="100%" alt="The performers raise the headpieces"}
 
 	Homer is tortutred by the Nuclear Touch of Mr. Burns. Photo by Anthony Garza.
 
@@ -109,7 +109,7 @@ The crown's look came together through a long prototyping process. Before manufa
 
 I fine-tuned my 3D printers to print slow and hot — a recipe for extracting plastic as transparent as possible. Simultaneously, however, I gave the spikes sharper edges, and the tight corners in a two-layer thick wall would concentrate the plastic so the sharp edges would look a more opaque white — I wanted to evoke broken glass. The fasteners for each spike were changed to delicate brass screws, suggesting the touch of an artisan. In combination with the glass-like spikes, this design seemed to suggest this angelic crown was handmade out of shattered lightbulbs. It is far and away the design I am proudest of.
 
-![](/images/burns/lisa_unlit.jpg){:width="100%" alt="Lisa's crown"}
+![](/images/burns/lisa_unlit_web.webp){:width="100%" alt="Lisa's crown"}
 
 	Lisa's finished crown. Photo by Anthony Garza.
 
@@ -117,7 +117,7 @@ I fine-tuned my 3D printers to print slow and hot — a recipe for extracting pl
 
 Ultimately, the headpieces were a theatrical success, though that's not to say the designs were perfect — admittedly, many aspects were over-engineered for the application. The integrated batteries were much larger than they needed to be; most headpieces could run at full brightness for hours, and even Bart's twig crown, with the shortest battery life, was capable of running for 40 minutes with the lights on. These "over-engineered" aspects did end up mitigating some of the designs' failures, the largest of which were durability and accessibility. While exceptionally durable in some areas, the microcontrollers — a constant point of contact for the dressers who switched them on/off and unplugged/plugged them in to charge every show — were very fragile. The charging port on Bart's crown broke off after the penultimate show, and the device would have been nonfunctional if not for the battery being oversized enough to last through closing on the same charge.
 
-![](/images/burns/all_light.jpg){:width="100%" alt="The headpieces in action"}
+![](/images/burns/all_light_web.webp){:width="100%" alt="The headpieces in action"}
 
   The headpieces in action. Photo by Huth Photo.
 

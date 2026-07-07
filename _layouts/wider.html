@@ -7,6 +7,9 @@ layout: default
     font-size: 0.95rem;
     padding: 6px 12px;
   }
+  @media (min-width: 768px) {
+    .intro .wrap--article { max-width: 75%; }
+  }
 
   .bento {
     padding: 0 20px 15px;
@@ -49,7 +52,7 @@ layout: default
     border-style: dashed;
   }
   .bento__box--list {
-    border-color: rgb(147, 103, 147);
+    border-color: var(--year-accent);
   }
   .bento__box--tags {
     grid-area: tags;
@@ -124,7 +127,7 @@ layout: default
     font-family: var(--f-title);
     font-size: 1.15rem;
     font-weight: 700;
-    color: rgb(147, 103, 147);
+    color: var(--year-accent);
     margin: 0 0 8px;
   }
   .bento__box-list {
@@ -210,58 +213,18 @@ layout: default
 
 <section class="intro">
 
-	<div class="wrap", style="max-width:75%">
+	<div class="wrap wrap--article">
 
 		<h1>{{ page.title }}</h1>
 		<br>
-		{% if page.date %}
-		<span class="badge" style="background:oklch(21.8% 0.058 336.281);color:oklch(100% 0 0)">{{page.date | date: "%Y"}}</span>
-		{% endif %}
-  
-		{% if page.personal %}
-		<a class="badge" style="background:{{ site.data.settings.tag_colors.personal }};color:{{ site.data.settings.tag_active_text.personal }}" href="/list/?filter=personal">Personal Project</a>
-		{% endif %}
-  
-		{% if page.THE %}
-		<a class="badge" style="background:{{ site.data.settings.tag_colors.THE }};color:{{ site.data.settings.tag_active_text.THE }}" href="/list/?filter=THE">Theater</a>
-		{% endif %}
-  
-		{% if page.EMB %}
-		<a class="badge" style="background:{{ site.data.settings.tag_colors.EMB }};color:{{ site.data.settings.tag_active_text.EMB }}" href="/list/?filter=EMB">Embedded</a>
-		{% endif %}
-  
-		{% if page.DSP %}
-		<a class="badge" style="background:{{ site.data.settings.tag_colors.DSP }};color:{{ site.data.settings.tag_active_text.DSP }}" href="/list/?filter=DSP">DSP</a>
-		{% endif %}
-  
-		{% if page.PCBD %}
-		<a class="badge" style="background:{{ site.data.settings.tag_colors.PCBD }};color:{{ site.data.settings.tag_active_text.PCBD }}" href="/list/?filter=PCBD">PCB Design</a>
-		{% endif %}
-  
-		{% if page.FAB %}
-		<a class="badge" style="background:{{ site.data.settings.tag_colors.FAB }};color:{{ site.data.settings.tag_active_text.FAB }}" href="/list/?filter=FAB">Fabrication</a>
-		{% endif %}
-  
-		{% if page.CS %}
-		<a class="badge" style="background:{{ site.data.settings.tag_colors.CS }};color:{{ site.data.settings.tag_active_text.CS }}" href="/list/?filter=CS">CS</a>
-		{% endif %}
-  
+		{% include tag-badges.html item=page mode="link" %}
+
 	</div>
 
 </section>
 
 <section class="bento">
-  {% assign stripe_colors = "" %}
-  {% if page.personal %}{% assign stripe_colors = stripe_colors | append: site.data.settings.tag_colors.personal | append: "," %}{% endif %}
-  {% if page.THE %}{% assign stripe_colors = stripe_colors | append: site.data.settings.tag_colors.THE | append: "," %}{% endif %}
-  {% if page.EMB %}{% assign stripe_colors = stripe_colors | append: site.data.settings.tag_colors.EMB | append: "," %}{% endif %}
-  {% if page.DSP %}{% assign stripe_colors = stripe_colors | append: site.data.settings.tag_colors.DSP | append: "," %}{% endif %}
-  {% if page.PCBD %}{% assign stripe_colors = stripe_colors | append: site.data.settings.tag_colors.PCBD | append: "," %}{% endif %}
-  {% if page.FAB %}{% assign stripe_colors = stripe_colors | append: site.data.settings.tag_colors.FAB | append: "," %}{% endif %}
-  {% if page.CS %}{% assign stripe_colors = stripe_colors | append: site.data.settings.tag_colors.CS | append: "," %}{% endif %}
-  {% assign stripe_arr = stripe_colors | split: "," %}
-  {% assign stripe_clean = "" %}
-  {% for c in stripe_arr %}{% if c != "" %}{% unless stripe_clean == "" %}{% assign stripe_clean = stripe_clean | append: "," %}{% endunless %}{% assign stripe_clean = stripe_clean | append: c %}{% endif %}{% endfor %}
+  {% capture stripe_clean %}{% include tag-colors.html item=page %}{% endcapture %}
 
   {% assign stripe_w = 10 %}
   {% assign grad_stops = "" %}
@@ -317,7 +280,7 @@ layout: default
 
     {% if page.highlights %}
     <div class="bento__box bento__box--list">
-      <h4 class="bento__box-title">This one has it all:</h4>
+      <h2 class="bento__box-title">This one has it all:</h2>
       <ul class="bento__box-list">
         {% for item in page.highlights %}<li>{{ item }}</li>{% endfor %}
       </ul>
@@ -336,7 +299,7 @@ layout: default
 
 <section class="singles">
 
-	{{ page.content }}
+	{{ page.content | replace: '<img src', '<img loading="lazy" src' }}
 
 </section>
 

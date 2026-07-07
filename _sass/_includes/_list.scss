@@ -1,45 +1,5 @@
-// .single {
-//     width: 700px;
-//     max-width: 100%;
-//     margin: 0 auto;
-//     color: aqua;
-//   }
-
-
-
 .container {
   width: 80%;
-}
-
-.card {
-  border-color: $text_light_color;
-  border-width: 4px;
-  margin-top: 2%;
-  color: $text_dark_color;
-  font-size: small;
-  margin-bottom: 0;
-
-  &:hover {
-    color: $pretty-pink;
- }
-}
-
-.card-text{
-  font-size: small;
-
-}
-  
-.card-header {
-    color: $pink-white;
-    background-color: $pretty-pink;
-}
-
-.card-body{
-  font-size: small;
-  margin-bottom: 0;
-
-}
-
-.text-muted {
-  text-align: right;
+  max-width: 1320px;
+  margin: 0 auto;
 }
