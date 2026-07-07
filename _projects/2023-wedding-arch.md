@@ -23,7 +23,6 @@ FAB: true
 CS:
 ---
 
-<!-- ## Demo content -->
 <p>
 My sister got married on New Year's Eve 2023, and asked me around November if I'd build an arch to go over the sweetheart table where the bride and groom sit at dinner. She sent the following picture from pinterest as inspiration.
 </p>

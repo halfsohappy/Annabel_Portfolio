@@ -2,7 +2,7 @@
 title: 'Reactive LEDs for Wind Synthesizer'
 subtitle: 'A quick project putting a rudimentary spectrum analyzer on the side of an instrument.'
 date: 2022-3-1 00:00:00
-description: Board is a stylish full-width masonry grid theme. Made for designers, artists, photographers and developers to show off their best work.
+description: 
 featured_image: '/images/thumbs/ewi_led.webp'
 permalink: /EWI-LED/
 grid_width: auto-small
