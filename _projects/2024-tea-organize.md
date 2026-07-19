@@ -58,7 +58,7 @@ The tea is kept in mason jars with custom 3D-printed lids that have magnets seal
 The solid walnut (with dovetails!) is sanded past "smooth" territory and into "soft" territory, and combined with a wipe on poly finish it is dare I say *gorgeous*. The unfinished steel shelves give it a little funky aesthetic flair, and the final look, with duct tape labels on the tea jars, looks right at home at my work.
 
 
-<div class="gallery" data-columns="3">
+<div class="gallery" data-style="bento">
 	<img src="/images/tea_organize/hang.webp">
 	<img src="/images/tea_organize/jars.webp">
 	<img src="/images/tea_organize/tea_cad.webp">

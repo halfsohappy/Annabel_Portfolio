@@ -48,18 +48,16 @@ To achieve this design, I chose to use a hard-wired transmitter that broadcast d
 
 The transmitter that made it into the show was the last in a series of iterations. The face was redesigned so that the "iPod-like" navigation wheel was flush with the surface, and the screws attaching the body pieces together were inserted into the underside, recessed into the base for a very clean look. I obtained a new display of the same type I originally wanted to use (a low resolution OLED) which allowed for live monitoring of all the data the device was streaming, as well as arbitrary address setting using the navigation wheel. This design used tire weights in the base and rubber feet on the underside to maintain a strong grip with the table. The backside had a flush DMX port as well as a small blackout switch. I thought the new colors were apt for the production — they evoked either 'starlight', or 'Homer Simpson' — both of which were appropriate. When the DMX input was disconnected, the screen would display "D'oh!"
 
-<p>
-<div class="gallery" data-columns="2">
+<div class="gallery" data-style="strip">
 	<img src="/images/burns/tx4_front.jpeg">
 	<img src="/images/burns/tx4_back.jpeg">
 </div>
-</p>
 
 	The transmitter used for Mr. Burns — front and back.
 
 That final unit was the latest in a long line of revisions. The first was the design built for *GOOD*; the limited display meant each input method had a very specific command, and the size difference between its USB-C input and its massive DMX jack meant it had a tendency to rest on its side. The first of 3 designs in the 25-26 academic year introduced new features such as a weighted base to prevent torque from the large DMX cable causing it to slide around the tech table, but was ultimately redesigned because the screen was nonfunctional (I received a broken part) and the knobs on the side were too difficult to manipulate. The next design decreased width by making the weights dictate the length of the device, and was the first design to place the antenna on the back and to fully embrace the two-tone look — but its screen was simply too small to display any more than one piece of information when viewed from a standard distance, and for that reason I redesigned/remade the transmitter for a final time.
 
-<div class="gallery" data-columns="4">
+<div class="gallery" data-style="strip">
 	<img src="/images/burns/tx1_web.webp">
 	<img src="/images/burns/tx2.jpeg">
 	<img src="/images/burns/tx3_web.webp">
