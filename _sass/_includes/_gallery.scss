@@ -182,3 +182,154 @@
 
 
 
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Filmstrip
+// data-style="strip": one consistent-height, horizontally-scrollable row
+// between dashed rules. Rows that fit are centered; overflow scrolls with
+// snap. The caption (plus photo-count pill) docks inside the bottom rule.
+
+.gallery--strip {
+	border-top: 3px dashed $pretty-pink;
+	border-bottom: 3px dashed $pretty-pink;
+	padding: 14px 0;
+
+	.gallery__wrap {
+		display: flex;
+		gap: 12px;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		scrollbar-width: thin;
+		scrollbar-color: $pretty-pink transparent;
+		padding-bottom: 4px;
+	}
+
+	.gallery__item {
+		flex: 0 0 auto;
+
+		// Safe centering: centers when content fits, scrolls from the left
+		// edge when it doesn't (justify-content: center would clip).
+		&:first-child { margin-left: auto; }
+		&:last-child { margin-right: auto; }
+	}
+
+	.gallery__item__link {
+		display: block;
+		cursor: zoom-in;
+	}
+
+	.gallery__item img {
+		display: block;
+		height: 210px;
+		width: auto;
+		border-radius: 10px;
+		scroll-snap-align: center;
+
+		@include mq(tabletp) {
+			height: 300px;
+		}
+	}
+
+	.gallery__caption {
+		display: flex;
+		align-items: baseline;
+		gap: 10px;
+		padding: 12px 4px 0;
+
+		.language-plaintext.highlighter-rouge {
+			flex: 1;
+			margin: 0;
+			max-width: 100%;
+			padding: 0;
+
+			pre.highlight {
+				border-left: 0;
+				padding: 0;
+			}
+		}
+	}
+
+	.gallery__count {
+		flex-shrink: 0;
+		font-size: 11px;
+		font-weight: $bold-weight;
+		letter-spacing: 0.04em;
+		color: $background-color;
+		background: var(--year-accent);
+		border-radius: 999px;
+		padding: 3px 11px;
+		white-space: nowrap;
+	}
+}
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Bento gallery
+// data-style="bento": images cropped into a uniform rounded grid inside a
+// slim pink frame. board.js assigns --hero / --wide spans so the grid packs
+// into a clean rectangle; --tall is available for manual use.
+
+.gallery--bento {
+	border: 2px solid $pretty-pink;
+	border-radius: 20px;
+	padding: 12px;
+
+	.gallery__wrap {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		grid-auto-rows: 130px;
+		grid-auto-flow: dense;
+		gap: 12px;
+
+		@include mq(tabletp) {
+			grid-auto-rows: 170px;
+		}
+	}
+
+	.gallery__item {
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.gallery__item__link {
+		display: block;
+		width: 100%;
+		height: 100%;
+		cursor: zoom-in;
+	}
+
+	.gallery__item img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+		transition: transform 0.25s ease;
+	}
+
+	@media (hover: hover) {
+		.gallery__item:hover img {
+			transform: scale(1.04);
+		}
+	}
+
+	.gallery__item--hero {
+		grid-column: span 2;
+		grid-row: span 2;
+	}
+
+	.gallery__item--wide {
+		grid-column: span 2;
+	}
+
+	.gallery__item--tall {
+		grid-row: span 2;
+	}
+
+	@include mq(mobilep) {
+		padding: 8px;
+
+		.gallery__wrap {
+			grid-template-columns: repeat(2, 1fr);
+			grid-auto-rows: 120px;
+			gap: 8px;
+		}
+	}
+}

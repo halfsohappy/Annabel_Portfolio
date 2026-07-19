@@ -582,8 +582,9 @@
 			var thisId = 'gallery-' + galleryCount;
 			$this.attr('id', thisId);
 
-			// Gallery columns
+			// Gallery columns / presentation style
 			var galleryCols = $this.attr('data-columns');
+			var galleryStyle = $this.attr('data-style');
 
 			// Set up gallery container
 			$this.append('<div class="gallery__wrap"></div>');
@@ -602,8 +603,43 @@
 			// Wait for images to load
 			$this.imagesLoaded( function() {
 
+				// Filmstrip: consistent-height scrollable row, no masonry
+				if ( galleryStyle === 'strip' ) {
+
+					$this.addClass('gallery--strip');
+
+					// Init fluidbox
+					$this.find('.gallery__item__link').fluidbox({
+						loader: true
+					});
+				}
+
+				// Bento: uniform cropped grid inside a slim frame
+				else if ( galleryStyle === 'bento' ) {
+
+					$this.addClass('gallery--bento');
+
+					// Assign spans so the 4-column grid packs into a clean
+					// rectangle: n%4==1 → first item becomes a 2×2 hero;
+					// n%4==2 → last two items span 2 columns; n%4==3 → last one does.
+					var $items = $this.find('.gallery__item');
+					var bentoRemainder = $items.length % 4;
+					if ( bentoRemainder === 1 ) {
+						$items.first().addClass('gallery__item--hero');
+					} else if ( bentoRemainder === 2 ) {
+						$items.slice(-2).addClass('gallery__item--wide');
+					} else if ( bentoRemainder === 3 ) {
+						$items.last().addClass('gallery__item--wide');
+					}
+
+					// Init fluidbox
+					$this.find('.gallery__item__link').fluidbox({
+						loader: true
+					});
+				}
+
 				// If it's a single column gallery
-				if ( galleryCols === '1' ) {
+				else if ( galleryCols === '1' ) {
 
 					// Add carousel class to gallery
 					$this.addClass('gallery--carousel');
@@ -702,7 +738,7 @@
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Images
 
-		$('.single p > img').each( function() {
+		$('.single p > img, .singles p > img').each( function() {
 			var thisP = $(this).parent('p');
 			$(this).insertAfter(thisP);
 			$(this).wrapAll('<div class="image-wrap"></div>');
@@ -714,7 +750,7 @@
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Videos
 
 		// For each iframe
-		$('.single iframe').each( function() {
+		$('.single iframe, .singles iframe').each( function() {
 
 			// If it's YouTube or Vimeo
 			if ( $(this).attr('src').indexOf('youtube') >= 0 || $(this).attr('src').indexOf('vimeo') >= 0 ) {
@@ -734,8 +770,38 @@
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Tables
 
-		$('.single table').each(function () {
+		$('.single table, .singles table').each(function () {
 			$(this).wrapAll('<div class="table-wrap"></div>');
+		});
+
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Figure captions
+
+		// Dock an indented caption (rendered as a plaintext code block) into
+		// the media element it follows: inside figure/.image-wrap plates, or
+		// into a filmstrip's caption row alongside a photo-count pill.
+		$('.single, .singles').find('.language-plaintext.highlighter-rouge').each(function () {
+			var $cap = $(this);
+			var $prev = $cap.prev();
+
+			// Step over (and drop) empty paragraphs left behind by raw HTML markup
+			while ($prev.is('p') && !$prev.text().trim() && $prev.children().length === 0) {
+				var $emptyP = $prev;
+				$prev = $prev.prev();
+				$emptyP.remove();
+			}
+
+			if ($prev.is('figure, .image-wrap')) {
+				$cap.appendTo($prev);
+			}
+			else if ($prev.is('.gallery[data-style="strip"]')) {
+				var photoCount = $prev.find('img').length;
+				var $row = $('<div class="gallery__caption"></div>');
+				$row.append('<span class="gallery__count">' + photoCount + ' photos</span>');
+				$row.append($cap);
+				$prev.append($row);
+			}
 		});
 
 

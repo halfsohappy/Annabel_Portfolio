@@ -1,0 +1,122 @@
+// - - - - - - - - - - - - - - - - - -
+
+// Story mode — numbered-photo-essay layout for image-led articles.
+// Authored as raw HTML in the article body:
+//   <div class="story">
+//     <div class="story__step">
+//       <div class="story__dot"></div>
+//       <div class="story__text">...</div>
+//       <div class="story__media"><img src="..."></div>
+//     </div>
+//   </div>
+// Steps alternate image side automatically; stacks on mobile.
+
+// - - - - - - - - - - - - - - - - - -
+
+.story {
+	position: relative;
+	max-width: 90%;
+	margin: 30px auto;
+
+	@include mq(tabletp) {
+		max-width: 83%;
+		margin: 40px auto;
+	}
+
+	@include mq(laptop) {
+		max-width: 75%;
+		margin: 50px auto;
+	}
+
+	// The dashed timeline, running through the dot centers
+	&::before {
+		content: '';
+		position: absolute;
+		left: 12px;
+		top: 10px;
+		bottom: 10px;
+		border-left: 3px dashed $pretty-pink;
+	}
+}
+
+.story__step {
+	display: grid;
+	grid-template-columns: 26px 1fr 1.4fr;
+	gap: 0 24px;
+	align-items: center;
+	margin-bottom: 46px;
+	position: relative;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	&:nth-child(even) {
+		grid-template-columns: 26px 1.4fr 1fr;
+
+		.story__text { order: 3; }
+		.story__media { order: 2; }
+	}
+}
+
+.story__dot {
+	width: 26px;
+	height: 26px;
+	border-radius: 999px;
+	background: $pretty-pink;
+	z-index: 1;
+}
+
+.story__media img {
+	display: block;
+	width: 100%;
+	max-height: 460px;
+	object-fit: cover;
+	border-radius: 14px;
+}
+
+.story__text {
+	font-size: $p-small;
+	font-weight: $p-weight;
+	line-height: $p-lineheight;
+	letter-spacing: $p-spacing;
+
+	@include mq(tabletp) {
+		font-size: $p-medium;
+	}
+
+	@include mq(laptop) {
+		font-size: $p-large;
+	}
+
+	em {
+		font-style: normal;
+		font-weight: $bold-weight;
+		color: var(--year-accent);
+	}
+}
+
+@include mq(mobilep) {
+
+	.story::before {
+		display: none;
+	}
+
+	.story__step,
+	.story__step:nth-child(even) {
+		grid-template-columns: 1fr;
+		gap: 10px;
+	}
+
+	.story__step:nth-child(even) .story__text {
+		order: 0;
+	}
+
+	.story__step:nth-child(even) .story__media {
+		order: 1;
+	}
+
+	.story__dot {
+		display: none;
+	}
+}

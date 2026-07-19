@@ -32,6 +32,7 @@
 .single,
 .singles {
 	padding-bottom: 40px;
+	counter-reset: fig;
 
 	@include mq(tabletp) {
 		padding-bottom: 50px;
@@ -84,8 +85,7 @@
 		}
 	}
 
-	blockquote,
-	figure {
+	blockquote {
 		max-width: 90%;
 		margin: 20px auto;
 
@@ -361,8 +361,10 @@
 // An indented line under an image renders as a language-plaintext code
 // block; restyle those as captions (small text with an accent tick) instead
 // of code chrome. Fenced code with an explicit language (```cpp …) is
-// unaffected and keeps normal code styling. Widths follow the text column
-// so the tick aligns with the figure's left edge.
+// unaffected and keeps normal code styling. No horizontal padding here —
+// the caption's left edge must land exactly on the figure's left edge, so
+// width/centering come only from the max-width rule below, which mirrors
+// .image-wrap/.gallery/.video-wrap.
 
 .single,
 .singles {
@@ -370,14 +372,7 @@
 	.language-plaintext.highlighter-rouge {
 		width: auto;
 		margin: 8px auto 0;
-		padding-left: 30px;
-		padding-right: 30px;
 		max-width: none;
-
-		@include mq(tabletp) {
-			padding-left: 0;
-			padding-right: 0;
-		}
 
 		.highlight {
 			margin: 0;
@@ -393,54 +388,29 @@
 
 		code {
 			font-family: $body-font;
-			font-size: 12.5px;
-			line-height: 1.55;
+			font-size: 19px;
+			line-height: 1.5;
 			color: $text-medium-color;
 			white-space: pre-wrap;
 		}
 	}
 }
 
-.single .language-plaintext.highlighter-rouge {
-
-	@include mq(tabletp) {
-		max-width: 60%;
-	}
-
-	@include mq(tabletl) {
-		max-width: 55%;
-	}
-
-	@include mq(laptop) {
-		max-width: 50%;
-	}
-
-	@include mq(desktop) {
-		max-width: 45%;
-	}
-}
-
+// Caption width follows the figure (.image-wrap/.video-wrap) it sits under,
+// not the narrower paragraph text column, so it wraps far less eagerly.
+.single .language-plaintext.highlighter-rouge,
 .singles .language-plaintext.highlighter-rouge {
-	max-width: 75%;
+	max-width: 90%;
 
 	@include mq(tabletp) {
-		max-width: 70%;
-	}
-
-	@include mq(tabletl) {
-		max-width: 65%;
+		max-width: 83%;
 	}
 
 	@include mq(laptop) {
-		max-width: 60%;
-	}
-
-	@include mq(desktop) {
-		max-width: 55%;
+		max-width: 75%;
 	}
 }
 
-.image-wrap,
 .video-wrap {
 	position: relative;
 	max-width: 90%;
@@ -461,8 +431,78 @@
 	}
 }
 
-.image-wrap img {
-	margin: 0 auto;
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Figure plates
+// Every inline article image — markdown ![]() (wrapped into .image-wrap by
+// board.js) or {% figure %} — gets the same framed "plate": pink border,
+// letterboxed to a consistent max height, caption docked in the footer.
+
+.single figure,
+.singles figure,
+.image-wrap {
+	position: relative;
+	max-width: 90%;
+	margin: 20px auto;
+	border: 4px solid $pretty-pink;
+	border-radius: 14px;
+	overflow: hidden;
+	background: $background-alt-color;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+
+	@include mq(tabletp) {
+		margin: 30px auto;
+		max-width: 83%;
+	}
+
+	@include mq(laptop) {
+		margin: 40px auto;
+		max-width: 75%;
+	}
+
+	&:first-child {
+		margin-top: 0;
+	}
+
+	p {
+		margin: 0;
+		padding: 0;
+		max-width: 100%;
+	}
+
+	img {
+		display: block;
+		margin: 0 auto;
+		width: auto;
+		max-width: 100%;
+		max-height: 62vh;
+	}
+}
+
+// Caption docked inside the plate (moved there by board.js when an indented
+// caption immediately follows the figure). Gets an automatic "Fig. NN — "
+// prefix; counter lives on .single/.singles.
+.single figure,
+.singles figure,
+.image-wrap {
+
+	.language-plaintext.highlighter-rouge {
+		margin: 0;
+		max-width: 100%;
+		padding: 12px 20px 13px;
+		background: $background-color;
+		border-top: 3px dashed $pretty-pink;
+
+		pre.highlight {
+			border-left: 0;
+			padding: 0;
+		}
+
+		code::before {
+			counter-increment: fig;
+			content: "Fig. " counter(fig, decimal-leading-zero) " — ";
+			color: var(--year-accent);
+			font-weight: $bold-weight;
+		}
+	}
 }
 
 .video {

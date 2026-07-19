@@ -32,7 +32,7 @@ CS:
 
 The main attraction of this one is probably the gorgeous perfboard circuits -- which are my best ever -- so I'll show them off at the top.
 
-<div class="gallery" data-columns="3">
+<div class="gallery" data-style="bento">
 	<img src="/images/nixie/IC1.webp">
 	<img src="/images/nixie/IC2.webp">
 	<img src="/images/nixie/shift_reg.webp">
@@ -89,7 +89,7 @@ A huge point of pride for this project is how easily the whole thing can be take
 The clock starts with the nixie tubes, which take around 200VDC and have 1 input per digit, common anode. The 48 wires from my 4 tube sockets go to a perfobard that connects each tube to a vintage nixie decoder IC. The 4 ICs each take a 4 bit parallel input to indicate which digit the tube should display, and those 16 connections go to a seperate perfboard which reroutes them into a more logical order and into a connector for a 16 wire ribbon cable.
 
 
-<div class="gallery" data-columns="2">
+<div class="gallery" data-style="strip">
 	<img src="/images/nixie/one.webp">
 	<img src="/images/nixie/IC2.webp">
 	<img src="/images/nixie/to_ribbon.webp">
@@ -108,7 +108,7 @@ The board also has power inputs, which are supplied by the power board. Power is
 
 For charging, a USB-C PD chip requests 9V over USB-C which goes directly to the BMS, and the chip has a small 3d-printed mount that attaches to the extrusions on the rear.
 
-<div class="gallery" data-columns="2">
+<div class="gallery" data-style="strip">
 	<img src="/images/nixie/usbc.jpeg">
 	<img src="/images/nixie/usbcc.jpeg">
 </div>
