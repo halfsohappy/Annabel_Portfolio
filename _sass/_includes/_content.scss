@@ -434,7 +434,9 @@
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Figure plates
 // Every inline article image — markdown ![]() (wrapped into .image-wrap by
 // board.js) or {% figure %} — gets the same framed "plate": pink border,
-// letterboxed to a consistent max height, caption docked in the footer.
+// caption docked in the footer. The image fills the frame width at its
+// natural aspect ratio, so every plate is the same width (consistent) with
+// no letterbox and no downscaling. Click opens the body-level lightbox.
 
 .single figure,
 .singles figure,
@@ -445,7 +447,6 @@
 	border: 4px solid $pretty-pink;
 	border-radius: 14px;
 	overflow: hidden;
-	background: $background-alt-color;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
 
 	@include mq(tabletp) {
@@ -470,10 +471,9 @@
 
 	img {
 		display: block;
-		margin: 0 auto;
-		width: auto;
-		max-width: 100%;
-		max-height: 62vh;
+		width: 100%;
+		height: auto;
+		cursor: zoom-in;
 	}
 }
 
