@@ -603,15 +603,12 @@
 			// Wait for images to load
 			$this.imagesLoaded( function() {
 
-				// Filmstrip: consistent-height scrollable row, no masonry
+				// Filmstrip: consistent-height scrollable row, no masonry.
+				// Zoom is handled by the body-level lightbox (see bottom of file);
+				// dense scroll containers would clip an in-place fluidbox.
 				if ( galleryStyle === 'strip' ) {
 
 					$this.addClass('gallery--strip');
-
-					// Init fluidbox
-					$this.find('.gallery__item__link').fluidbox({
-						loader: true
-					});
 				}
 
 				// Bento: uniform cropped grid inside a slim frame
@@ -619,23 +616,32 @@
 
 					$this.addClass('gallery--bento');
 
-					// Assign spans so the 4-column grid packs into a clean
-					// rectangle: n%4==1 → first item becomes a 2×2 hero;
-					// n%4==2 → last two items span 2 columns; n%4==3 → last one does.
-					var $items = $this.find('.gallery__item');
-					var bentoRemainder = $items.length % 4;
-					if ( bentoRemainder === 1 ) {
-						$items.first().addClass('gallery__item--hero');
-					} else if ( bentoRemainder === 2 ) {
-						$items.slice(-2).addClass('gallery__item--wide');
-					} else if ( bentoRemainder === 3 ) {
-						$items.last().addClass('gallery__item--wide');
-					}
-
-					// Init fluidbox
-					$this.find('.gallery__item__link').fluidbox({
-						loader: true
+					// Assign spans from each image's orientation so the crop
+					// stays mild: portraits get a tall (1×2) cell, genuinely
+					// wide panos get a wide (2×1) cell, and everything in
+					// between uses the base cell (which already matches a
+					// normal landscape). grid-auto-flow: dense packs the holes.
+					$this.find('.gallery__item').each(function () {
+						var im = this.querySelector('img');
+						if ( !im || !im.naturalWidth || !im.naturalHeight ) return;
+						var ratio = im.naturalWidth / im.naturalHeight;
+						if ( ratio < 0.9 ) {
+							this.className += ' gallery__item--tall';
+						} else if ( ratio > 1.7 ) {
+							this.className += ' gallery__item--wide';
+						}
 					});
+
+					// Feature the first tile as a 2×2 hero when the set is
+					// large and that tile isn't a portrait/pano (which have
+					// their own spans).
+					var $bentoItems = $this.find('.gallery__item');
+					if ( $bentoItems.length >= 5 ) {
+						var $first = $bentoItems.first();
+						if ( !$first.is('.gallery__item--tall, .gallery__item--wide') ) {
+							$first.addClass('gallery__item--hero');
+						}
+					}
 				}
 
 				// If it's a single column gallery
@@ -720,11 +726,7 @@
 						itemSelector: '.gallery__item',
 						transitionDuration: 0
 					});
-							
-					// Init fluidbox
-					$this.find('.gallery__item__link').fluidbox({
-						loader: true
-					});
+					// Zoom handled by the body-level lightbox (bottom of file).
 
 				}
 
@@ -973,7 +975,77 @@
 		}
 
 	});
-	
-	
-	
+
+
+
 }(jQuery));
+
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Lightbox
+// One full-screen image viewer appended to <body>. Because it lives at the
+// body root, no article container — framed plates (overflow:hidden), scroll
+// strips (overflow-x:auto), or cropped bento cells — can clip it, which is
+// what broke the old in-place fluidbox zoom. Delegated, so it also covers
+// images injected by AJAX navigation.
+(function () {
+
+	if ( window.__articleLightbox ) { return; }
+	window.__articleLightbox = true;
+
+	var overlay = document.createElement('div');
+	overlay.className = 'lightbox';
+	overlay.innerHTML =
+		'<button class="lightbox__close" type="button" aria-label="Close">&times;</button>' +
+		'<img class="lightbox__img" alt="">';
+	document.body.appendChild(overlay);
+	var lbImg = overlay.querySelector('.lightbox__img');
+
+	function open(src, alt) {
+		if ( !src ) { return; }
+		lbImg.src = src;
+		lbImg.alt = alt || '';
+		overlay.classList.add('lightbox--open');
+		document.documentElement.style.overflow = 'hidden';
+	}
+
+	function close() {
+		overlay.classList.remove('lightbox--open');
+		document.documentElement.style.overflow = '';
+		lbImg.removeAttribute('src');
+	}
+
+	document.addEventListener('click', function (e) {
+		var t = e.target;
+		if ( !t || !t.closest ) { return; }
+
+		// Close when the overlay backdrop or its close button is clicked
+		if ( overlay.classList.contains('lightbox--open') &&
+			 ( t === overlay || t.classList.contains('lightbox__close') ) ) {
+			e.preventDefault();
+			close();
+			return;
+		}
+
+		// Gallery tiles (strip / bento / masonry) link to the full-res image
+		var galLink = t.closest('.gallery__item__link');
+		if ( galLink ) {
+			e.preventDefault();
+			var gimg = galLink.querySelector('img');
+			open(galLink.getAttribute('href') || (gimg && (gimg.currentSrc || gimg.src)), gimg && gimg.alt);
+			return;
+		}
+
+		// Framed plates and story-mode photos are bare images
+		var img = t.closest('.image-wrap img, .single figure img, .singles figure img, .story__media img');
+		if ( img ) {
+			e.preventDefault();
+			open(img.currentSrc || img.src, img.alt);
+		}
+	});
+
+	document.addEventListener('keydown', function (e) {
+		if ( e.key === 'Escape' ) { close(); }
+	});
+
+}());
