@@ -50,3 +50,6 @@ grid_alignments:
   - top
   - center
   - bottom
+exclude:
+  - README.md
+  - TODO.md
