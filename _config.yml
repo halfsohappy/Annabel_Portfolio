@@ -53,3 +53,4 @@ grid_alignments:
 exclude:
   - README.md
   - TODO.md
+  - sorting/
