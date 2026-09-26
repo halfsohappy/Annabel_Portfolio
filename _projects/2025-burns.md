@@ -118,4 +118,4 @@ Ultimately, the headpieces were a theatrical success, though that's not to say t
 ![](/images/burns/all_light_web.webp){:width="100%" alt="The headpieces in action"}
 
   The headpieces in action. Photo by Huth Photo.
-
+<p> </p>
