@@ -186,7 +186,8 @@ permalink: /list/
     <div class="filter-row">
       <button class="filter-btn active" data-filter="all">All</button>
       {% for tc in site.data.settings.tag_colors %}
-      <button class="filter-btn" data-filter="{{ tc[0] }}">{{ site.data.settings.tag_labels[tc[0]] | default: tc[0] }}</button>
+      {% assign _key = tc[0] %}
+      <button class="filter-btn" data-filter="{{ _key }}">{{ site.data.settings.tag_labels[_key] | default: _key }}</button>
       {% endfor %}
     </div>
     <div class="filter-row">
