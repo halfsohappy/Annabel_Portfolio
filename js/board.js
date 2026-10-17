@@ -162,9 +162,10 @@
 			var items = Array.from(wrap.querySelectorAll('.listing-item'));
 			if (!items.length) return;
 
-			// Determine current column count from computed grid style
-			var style = window.getComputedStyle(wrap);
-			var totalCols = style.getPropertyValue('grid-template-columns').split(' ').length || 6;
+			// Column count for the current breakpoint, from the CSS. Counting the
+			// computed grid-template-columns would include implicit columns
+			// created by tiles still placed for a wider layout.
+			var totalCols = parseInt(window.getComputedStyle(wrap).getPropertyValue('--grid-cols'), 10) || 6;
 
 			// Set row height equal to column width for square cells
 			var rowHeight = Math.round(wrap.clientWidth / totalCols);
@@ -284,11 +285,15 @@
 		layoutGrid();
 		injectTagChips();
 
-		// Re-run on resize to adapt to responsive column changes
-		var resizeTimer;
+		// Re-run on resize, once per frame, so rows stay square and the layout
+		// switches as soon as the column count changes (layouts are cached)
+		var resizeFrame = null;
 		$(window).off('resize.grid').on('resize.grid', function() {
-			clearTimeout(resizeTimer);
-			resizeTimer = setTimeout(layoutGrid, 200);
+			if (resizeFrame) return;
+			resizeFrame = requestAnimationFrame(function() {
+				resizeFrame = null;
+				layoutGrid();
+			});
 		});
 
 		// Wait until first image has loaded for layout-dependent work

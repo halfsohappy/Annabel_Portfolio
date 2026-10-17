@@ -10,22 +10,26 @@
 	border-radius: 5px;
 }
 
+// --grid-cols is the column count js/grid-pack.js packs for. JS reads it
+// rather than the computed grid-template-columns, which also counts the
+// implicit columns created by tiles still placed for a wider layout.
 .listing-wrap {
+	--grid-cols: #{$grid-columns};
 	display: grid;
-	grid-template-columns: repeat($grid-columns, 1fr);
+	grid-template-columns: repeat(var(--grid-cols), 1fr);
 	grid-auto-flow: dense;
 	grid-auto-rows: $grid-row-height;
 
 	@include mq(mobilep) {
-		grid-template-columns: repeat($grid-columns-mobile, 1fr);
+		--grid-cols: #{$grid-columns-mobile};
 	}
 
 	@include mq(tabletp) {
-		grid-template-columns: repeat($grid-columns-tablet, 1fr);
+		--grid-cols: #{$grid-columns-tablet};
 	}
 
 	@include mq(tabletl) {
-		grid-template-columns: repeat($grid-columns, 1fr);
+		--grid-cols: #{$grid-columns};
 	}
 }
 
