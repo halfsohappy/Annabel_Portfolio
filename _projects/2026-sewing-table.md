@@ -2,11 +2,10 @@
 title: Textile Table
 subtitle: "This table for my textile shop has a pin-able upholstered top with a built-in ironing area."
 date: 2026-6-11 00:00:00
-featured_image: '/images/thumbs/sew_table.JPG'
+featured_image: '/images/thumbs/sew_table.webp'
 layout: wider
 permalink: /sewing_table/
 grid_width: auto-small
-grid_height: auto-small
 grid_crop: cover
 grid_crop_position: center
 

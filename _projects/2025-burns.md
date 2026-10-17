@@ -16,8 +16,7 @@ highlights:
 
 permalink: /Burns/
 layout: wider
-grid_width: auto-large
-grid_height: 5
+grid_width: auto-xl
 grid_crop: cover
 grid_crop_position: top
 

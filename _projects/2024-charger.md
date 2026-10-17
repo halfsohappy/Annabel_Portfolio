@@ -5,7 +5,6 @@ date: 2024-7-1 00:00:00
 description: 
 layout: wider
 grid_width: auto-small
-grid_height: auto-small
 grid_crop: cover
 grid_crop_position: center
 featured_image: '/images/thumbs/charger.webp'

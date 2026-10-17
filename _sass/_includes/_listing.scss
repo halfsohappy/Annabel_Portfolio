@@ -33,9 +33,12 @@
 	position: relative;
 	padding: calc($grid-spacing / 2);
 
+	// Fallback until js/grid-pack.js places the tiles (.is-packed)
 	@include mq(mobilep) {
-		grid-column: span 1 !important;
-		grid-row: span 1 !important;
+		.listing-wrap:not(.is-packed) & {
+			grid-column: span 1 !important;
+			grid-row: span 1 !important;
+		}
 	}
 }
 

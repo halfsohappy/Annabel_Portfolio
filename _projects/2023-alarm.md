@@ -14,7 +14,6 @@ featured_image: '/images/thumbs/alarm.webp'
 permalink: /alarm/
 layout: wider
 grid_width: auto-medium
-grid_height: auto-small
 grid_crop: cover
 grid_crop_position: top
 

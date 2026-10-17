@@ -6,7 +6,6 @@ description:
 featured_image: '/images/thumbs/ewi_led.webp'
 permalink: /EWI-LED/
 grid_width: auto-small
-grid_height: 2
 grid_crop: cover
 grid_crop_position: center
 

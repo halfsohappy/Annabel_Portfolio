@@ -10,6 +10,7 @@ GEM
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0)
     eventmachine (1.2.7)
+    fastimage (2.4.1)
     ffi (1.17.0-arm64-darwin)
     ffi (1.17.0-x86_64-linux-gnu)
     forwardable-extended (2.6.0)
@@ -79,6 +80,7 @@ PLATFORMS
   x86_64-linux-gnu
 
 DEPENDENCIES
+  fastimage
   jekyll (~> 4.3.4)
   jekyll-figure
   jekyll-sitemap

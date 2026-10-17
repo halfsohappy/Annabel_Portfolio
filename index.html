@@ -21,8 +21,10 @@ featured_image: /images/profile-photo-annie.jpg
 		{% assign gc = project.grid_crop | default: "cover" %}
 		{% assign gp = project.grid_crop_position | default: "center" %}
 		{% assign gar = project.grid_aspect_ratio | default: "" %}
+		{% assign gmin = project.grid_min_aspect | default: "" %}
+		{% assign gmax = project.grid_max_aspect | default: "" %}
 
-		{% unless gw == "auto" or gw == "auto-small" or gw == "auto-medium" or gw == "auto-large" or gw == false %}
+		{% unless gw == "auto" or gw == "auto-small" or gw == "auto-medium" or gw == "auto-large" or gw == "auto-xl" or gw == false %}
 			{% assign w_class = "listing-item--w" | append: gw %}
 		{% endunless %}
 
@@ -41,7 +43,7 @@ featured_image: /images/profile-photo-annie.jpg
 		{% capture tag_colors %}{% include tag-colors.html item=project %}{% endcapture %}
 		{% capture tag_names %}{% include tag-names.html item=project %}{% endcapture %}
 
-		<div class="listing-item {{ w_class }} {{ h_class }}{% if project.favorite %} shake-attention{% endif %}{% if project.layout == 'external' %} listing-item--external{% endif %}" data-grid-width="{{ gw }}" data-grid-height="{{ gh }}"{% if gar != "" %} data-grid-aspect-ratio="{{ gar }}"{% endif %} data-tag-colors="{{ tag_colors }}" data-tags="{{ tag_names }}">
+		<div class="listing-item {{ w_class }} {{ h_class }}{% if project.favorite %} shake-attention{% endif %}{% if project.layout == 'external' %} listing-item--external{% endif %}" data-grid-width="{{ gw }}" data-grid-height="{{ gh }}"{% if gar != "" %} data-grid-aspect-ratio="{{ gar }}"{% endif %}{% if gmin != "" %} data-grid-min-aspect="{{ gmin }}"{% endif %}{% if gmax != "" %} data-grid-max-aspect="{{ gmax }}"{% endif %}{% if project.thumb_width %} data-thumb-aspect="{{ project.thumb_width }}:{{ project.thumb_height }}"{% endif %} data-tag-colors="{{ tag_colors }}" data-tags="{{ tag_names }}">
 
 			{% if project.layout == 'external' %}
 			<a class="listing-item__link" href="{{ project.external_url }}" target="_blank" rel="noopener noreferrer">
@@ -50,7 +52,7 @@ featured_image: /images/profile-photo-annie.jpg
 			{% endif %}
 
 				<div class="listing-item__image {{ crop_class }} {{ pos_class }}">
-					<img src="{{ project.featured_image | relative_url }}" alt="{{ project.title }}" loading="lazy">
+					<img src="{{ project.featured_image | relative_url }}" alt="{{ project.title }}"{% if project.thumb_width %} width="{{ project.thumb_width }}" height="{{ project.thumb_height }}"{% endif %} loading="lazy">
 				</div>
 
 				<div class="listing-item__content listing-item__content--{{ site.data.settings.grid_settings.content_alignment }}">

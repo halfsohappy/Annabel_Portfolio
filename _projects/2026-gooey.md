@@ -18,7 +18,6 @@ highlights:
 permalink: /Sensor_Software/
 layout: wider
 grid_width: auto-medium
-grid_height: auto-medium
 grid_crop: cover
 grid_crop_position: top
 
