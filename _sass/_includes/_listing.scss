@@ -69,22 +69,26 @@
 	background: var(--tag-gradient, transparent);
 	@include transition(transform 0.25s ease, box-shadow 0.25s ease);
 
-	// On hover the image/content shrink inward to reveal the striped border
+	// On hover the image and overlay are clipped inward to reveal the striped
+	// border. Clipping (rather than shrinking their boxes) keeps the photo at
+	// the same scale, so the border covers its edges, and keeps the overlay's
+	// tint over exactly the visible part of the photo throughout.
 	.listing-item__image,
 	.listing-item__content {
-		transition: inset 0.25s ease, border-radius 0.25s ease;
 		inset: 0;
+		clip-path: inset(0 round var(--border-radius, 5px));
+		transition: clip-path 0.25s ease;
 	}
 
 	// Hover reveal only where a real pointer can hover; touch devices keep
 	// the overlay permanently visible instead (see .listing-item__content).
 	@media (hover: hover) and (min-width: $break-tabletl) {
 
-		// The overlay (hidden until hover) sits at its hovered size from the
-		// start, so its text never re-wraps while the border animates in.
+		// A transparent border as thick as the striped one keeps the overlay's
+		// text at its hovered width from the start, so it never re-wraps while
+		// the border animates in. The tint still fills it (border-box background).
 		.listing-item__content {
-			inset: var(--border-size, 4px);
-			border-radius: calc(var(--border-radius, 5px) - var(--border-size, 4px));
+			border: var(--border-size, 4px) solid transparent;
 		}
 
 		&:hover {
@@ -94,8 +98,7 @@
 
 			.listing-item__image,
 			.listing-item__content {
-				inset: var(--border-size, 4px);
-				border-radius: calc(var(--border-radius, 5px) - var(--border-size, 4px));
+				clip-path: inset(var(--border-size, 4px) round max(0px, calc(var(--border-radius, 5px) - var(--border-size, 4px))));
 			}
 
 			.listing-item__content {
