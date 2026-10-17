@@ -80,6 +80,13 @@
 	// the overlay permanently visible instead (see .listing-item__content).
 	@media (hover: hover) and (min-width: $break-tabletl) {
 
+		// The overlay (hidden until hover) sits at its hovered size from the
+		// start, so its text never re-wraps while the border animates in.
+		.listing-item__content {
+			inset: var(--border-size, 4px);
+			border-radius: calc(var(--border-radius, 5px) - var(--border-size, 4px));
+		}
+
 		&:hover {
 			transform: scale(1.02);
 			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
