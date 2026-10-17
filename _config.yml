@@ -54,3 +54,4 @@ exclude:
   - README.md
   - TODO.md
   - sorting/
+  - test/

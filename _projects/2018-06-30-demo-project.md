@@ -38,20 +38,34 @@ layout: wider
 
 # ── Grid Tile Sizing ──────────────────────────────────────────
 #
-# GRID_WIDTH — How many columns the tile spans on the homepage grid.
+# GRID_WIDTH — The tile's size tier on the homepage grid. js/grid-pack.js
+#              picks the exact shape from the tier and the thumbnail's shape,
+#              so tiles fit together with no holes and stay in date order
+#              (no tile moves more than 2 places).
 #   Options:
-#     auto        — JS picks width from image aspect ratio (1–12 range)
-#     auto-small  — aspect-based, clamped to 1–3 columns
-#     auto-medium — aspect-based, clamped to 3–4 columns
-#     auto-large  — aspect-based, clamped to 5–8 columns
-#     1–12        — fixed column span (integer)
-grid_width: 2
+#     auto-small  — about 1–2 cells on desktop
+#     auto-medium — about 4–6 cells (also the default, and what plain auto means)
+#     auto-large  — about 9–12 cells
+#     auto-xl     — about 16–25 cells
+#     1–12        — fixed column span on desktop (locks the shape; narrower
+#                   screens still use a tier chosen from the tile's area)
+grid_width: auto-medium
 
-# GRID_HEIGHT — How many rows the tile spans.
-#   Options:
-#     auto  — JS picks height from image aspect ratio
-#     1–12  — fixed row span (integer)
-grid_height: 2
+# GRID_HEIGHT — Only for fixed shapes: a row span (integer) used together
+#               with a numeric grid_width. Leave it out for tiers.
+# grid_height: 2
+
+# GRID_MIN_ASPECT / GRID_MAX_ASPECT — Optional limits on the tile's shape
+#   (width:height, e.g. "1:1", "4:3" or 1.33). By default a portrait photo
+#   never gets a landscape tile (or the reverse), and a tile stays within
+#   ±35% of the photo's shape. Set these for a photo that looks bad at some
+#   shapes; they replace the default rules.
+# grid_min_aspect: "1:1"
+# grid_max_aspect: "4:3"
+
+# GRID_ASPECT_RATIO — Optional: treat the thumbnail as this shape instead
+#   of its real one (e.g. when the subject is a crop of a wide photo).
+# grid_aspect_ratio: "16:9"
 
 # ── Grid Tile Image ──────────────────────────────────────────
 #

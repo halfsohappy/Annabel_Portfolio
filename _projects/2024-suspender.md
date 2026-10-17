@@ -12,8 +12,7 @@ featured_image: '/images/thumbs/suspend.webp'
 skills: "Wireless, Embedded, Wearables"
 permalink: /suspender/
 layout: wider
-grid_width: 2
-grid_height: 3
+grid_width: auto-medium
 grid_crop: cover
 grid_crop_position: left
 

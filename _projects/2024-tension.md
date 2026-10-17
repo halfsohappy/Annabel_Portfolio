@@ -6,8 +6,7 @@ description:
 featured_image: '/images/thumbs/tension.webp'
 permalink: /tensiometer/
 layout: wider
-grid_width: 4
-grid_height: auto-large
+grid_width: auto-xl
 grid_crop: cover
 grid_crop_position: left
 

@@ -16,11 +16,13 @@ _config.yml          # Jekyll configuration
 _data/settings.yml   # Theme settings (colors, fonts, grid, social links)
 _layouts/            # Page templates (default, page, post, wider)
 _includes/           # Reusable HTML partials (header, footer, socials)
+_plugins/            # Build-time plugins (thumb_dims.rb records thumbnail sizes)
 _pages/              # Static pages (about, contact, list, thanks)
 _projects/           # Portfolio project entries
 _posts/              # Blog posts
 _sass/               # SCSS stylesheets
 css/style.scss       # Main stylesheet entry point
-js/                  # JavaScript (board.js + bundled plugins)
+js/                  # JavaScript (board.js, grid-pack.js homepage grid, bundled plugins)
+test/                # Node tests: node test/grid-pack.test.js
 images/              # Project images and thumbnails
 ```

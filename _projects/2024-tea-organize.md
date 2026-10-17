@@ -7,8 +7,7 @@ highlights:
   - "Dovetail Joints!"
 date: 2024-8-1 00:00:00
 layout: wider
-grid_width: 2
-grid_height: 3
+grid_width: auto-medium
 grid_crop: cover
 grid_crop_position: top-left
 featured_image: '/images/thumbs/tea.webp'

@@ -6,7 +6,6 @@ featured_image: '/images/thumbs/arch.webp'
 layout: wider
 permalink: /wed_arch/
 grid_width: auto-small
-grid_height: auto-small
 grid_crop: cover
 grid_crop_position: center
 

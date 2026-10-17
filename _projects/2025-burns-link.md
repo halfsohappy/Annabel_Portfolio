@@ -6,7 +6,6 @@ featured_image: '/images/article_burns/annie_hjh.jpg'
 external_url: 'https://trinity.duke.edu/news/mr-burns-post-electric-play-shines-bright-through-inspiration-and-collaboration'
 date: 2025-11-5
 grid_width: auto-medium
-grid_height: auto-medium
 
 THE: true
 FAB: true

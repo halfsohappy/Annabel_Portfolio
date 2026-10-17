@@ -12,7 +12,6 @@ featured_image: '/images/thumbs/fpga.webp'
 permalink: /fpga_synth/
 layout: wider
 grid_width: auto-medium
-grid_height: auto-medium
 grid_crop: cover
 grid_crop_position: center
 
