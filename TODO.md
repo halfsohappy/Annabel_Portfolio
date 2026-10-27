@@ -40,3 +40,8 @@ switch per fixture to put it on master fader 1, master fader 2, or full.
 - [x] Add `exclude:` to `_config.yml` so `README.md` / `TODO.md` aren't published
 - [ ] Update README (mentions nonexistent `_posts/`, omits `external` layout)
 - [ ] Normalize tag front matter (stray `CAD:` field, inconsistent `personal:`)
+
+## 5. Project page features
+
+- [ ] Add a standardized "related projects" section to the bottom of each project page
+- [ ] Add a signifier showing whether a project was solo or a group project, and my role in the group
