@@ -18,7 +18,8 @@ layout: default
     max-width: 75%;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1.5fr 0.6fr;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    grid-template-rows: 1fr auto;
     grid-template-areas:
       "desc list"
       "meta list";
@@ -75,8 +76,8 @@ layout: default
   .bento__box--meta .bento__meta {
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
-    gap: 20px;
+    align-items: baseline;
+    gap: 8px 24px;
   }
   .bento__box--meta .bento__meta-row {
     flex-direction: row;
@@ -85,7 +86,14 @@ layout: default
   }
 
   @media (max-width: 767px) {
-    .bento__inner { grid-template-columns: 1fr; grid-template-areas: "desc" "list" "meta"; }
+    .bento__inner { grid-template-columns: 1fr; grid-template-rows: none; grid-template-areas: "desc" "meta" "list"; }
+    .bento__box--meta .bento__meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 16px;
+    }
+    .bento__box--meta .bento__meta-row { flex-direction: column; gap: 2px; }
+    .bento__meta-value { line-height: 1.35; }
   }
 
   /* Center description box — no stripe, giant ghost quote instead */
@@ -136,11 +144,13 @@ layout: default
     color: var(--text-medium-color);
     font-family: var(--f-body);
     font-size: 0.85rem;
-    line-height: 1.75;
+    line-height: 1.5;
   }
   .bento__box--list .bento__box-list {
-    padding-left: 0.9em;
+    list-style-position: outside;
+    padding-left: 1.2em;
   }
+  .bento__box-list li + li { margin-top: 4px; }
 
   /* Left meta box */
   .bento__meta { display: flex; flex-direction: column; gap: 14px; }
@@ -148,6 +158,7 @@ layout: default
   .bento__meta-tags .badge { font-size: 0.8rem; padding: 4px 10px; }
   .bento__meta-row { display: flex; flex-direction: column; gap: 3px; }
   .bento__meta-label {
+    white-space: nowrap;
     font-size: 0.65rem;
     font-weight: 600;
     letter-spacing: 0.12em;
@@ -282,7 +293,7 @@ layout: default
     <div class="bento__box bento__box--list">
       <h2 class="bento__box-title">This one has it all:</h2>
       <ul class="bento__box-list">
-        {% for item in page.highlights %}<li>{{ item }}</li>{% endfor %}
+        {% for item in page.highlights %}<li>{{ item | markdownify | remove: '<p>' | remove: '</p>' | strip }}</li>{% endfor %}
       </ul>
     </div>
     {% else %}
