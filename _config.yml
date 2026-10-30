@@ -55,3 +55,4 @@ exclude:
   - TODO.md
   - sorting/
   - test/
+  - editor/server.js
