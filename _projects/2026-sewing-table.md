@@ -42,38 +42,38 @@ I documented most of the build process live on Instagram, and will include the s
 <div class="story">
 	<div class="story__step">
 		<div class="story__dot"></div>
-		<div class="story__media"><img src="/images/table/ig/IMG_3359.JPG" alt="IG story"></div>
+		<div class="story__media"><img src="/images/table/ig/IMG_3359.jpg" alt="IG story"></div>
 	</div>
 	<div class="story__step">
 		<div class="story__dot"></div>
-		<div class="story__media"><img src="/images/table/ig/IMG_3360.JPG" alt="IG story"></div>
+		<div class="story__media"><img src="/images/table/ig/IMG_3360.jpg" alt="IG story"></div>
 	</div>
 	<div class="story__step">
 		<div class="story__dot"></div>
-		<div class="story__media"><img src="/images/table/ig/IMG_3361.JPG" alt="IG story"></div>
+		<div class="story__media"><img src="/images/table/ig/IMG_3361.jpg" alt="IG story"></div>
 	</div>
 	<div class="story__step">
 		<div class="story__dot"></div>
-		<div class="story__media"><img src="/images/table/ig/IMG_3362.JPG" alt="IG story"></div>
+		<div class="story__media"><img src="/images/table/ig/IMG_3362.jpg" alt="IG story"></div>
 	</div>
 	<div class="story__step">
 		<div class="story__dot"></div>
-		<div class="story__media"><img src="/images/table/ig/IMG_3363.JPG" alt="IG story"></div>
+		<div class="story__media"><img src="/images/table/ig/IMG_3363.jpg" alt="IG story"></div>
 	</div>
 	<div class="story__step">
 		<div class="story__dot"></div>
-		<div class="story__media"><img src="/images/table/ig/IMG_3364.JPG" alt="IG story"></div>
+		<div class="story__media"><img src="/images/table/ig/IMG_3364.jpg" alt="IG story"></div>
 	</div>
 	<div class="story__step">
 		<div class="story__dot"></div>
-		<div class="story__media"><img src="/images/table/ig/IMG_3365.JPG" alt="IG story"></div>
+		<div class="story__media"><img src="/images/table/ig/IMG_3365.jpg" alt="IG story"></div>
 	</div>
 	<div class="story__step">
 		<div class="story__dot"></div>
-		<div class="story__media"><img src="/images/table/ig/IMG_3366.JPG" alt="IG story"></div>
+		<div class="story__media"><img src="/images/table/ig/IMG_3366.jpg" alt="IG story"></div>
 	</div>
 	<div class="story__step">
 		<div class="story__dot"></div>
-		<div class="story__media"><img src="/images/table/ig/IMG_3367.JPG" alt="IG story"></div>
+		<div class="story__media"><img src="/images/table/ig/IMG_3367.jpg" alt="IG story"></div>
 	</div>
 </div>
